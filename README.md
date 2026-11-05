@@ -93,3 +93,18 @@ The older pale/white collectible crystal remains **metal (+2)**. The **cyan ener
 **Recovery:** branch `backup/v11-before-morph-lab` retains the v1.1 build.
 
 The live page is a self-contained HTML5 game: no separate asset server is necessary. The sprite atlases remain in `assets/` for future game development.
+
+## v1.3 — BODY GROWTH & SEVERABLE SEGMENTS
+
+**The primary objective is to grow your mechanical snake.** Your body is a tactical resource, and enemies can break it.
+
+- **Start small and slow:** 6 physical body segments; movement begins at 54 units/s (previously 80), with small later-level progression and ENGINE module speed upgrades.
+- **Collect green chassis blocks:** enemy kills can drop a green body segment; picking one up adds +1 segment. You also get a guaranteed +1 segment for standard wave completion and +2 as a level reward, up to **24** segments.
+- **COIL KILL unlocks at 12 segments:** before that, loops cannot kill enemies. Dropping below 12 after damage locks COIL until regrowth. The HUD shows current length/12.
+- **Enemies that sever segments:** from the end of Level 1 and then levels 2–3, heavy spiders, broodmothers, bosses and newly added **red-clawed CUTTER spiders** can bite a physical body segment. A successful bite shortens the snake by one. Segment losses have a cooldown to prevent an instant cascade.
+- **Weapons can detach:** if the targeted segment carries a module, the installed module drops as a recoverable pickup with its current kind and upgrade level preserved. Pick it up and reinstall in **BUILD**. If the field inventory is full, the dropped module stays on the floor.
+- **Actual weapon capacity depends on length:** you cannot install more modules than you have physical body slots (Merge still works normally). This gives tangible value to growth, while smaller builds remain maneuverable.
+- **Long bodies empower existing transformations:** every extra segment adds a FIREWORK firing position and an independent SCATTER drone, while giving wider tactical coils and stronger spatial presence. LIZARD TAIL unlocks at 9 segments.
+- **Safety:** start protection still applies in tutorial waves, and the minimum body is four segments. Existing BUILD, Merge, web slow, COIL, morph powers, three levels and bosses remain.
+
+The previous version is preserved at branch `backup/v12-before-body-growth`. The playable game remains a self-contained `index.html`; green chassis icons are presently drawn directly to the pixel-art canvas.
