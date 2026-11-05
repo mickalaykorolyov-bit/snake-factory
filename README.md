@@ -70,3 +70,26 @@
 
 Окремі вихідні спрайти павутини: [assets/coil_v11](assets/coil_v11/). Перед оновленням створено резервну гілку [backup/visual-v10-before-coil](../../tree/backup/visual-v10-before-coil).
 
+
+## v1.2 — MORPH LAB: four body transformations
+
+The update uses the existing mechanics and Claude pixel art. Core movement, 3 levels, BUILD, Merge, web spiders, and instant **COIL KILL** remain.
+
+**Power runes:** collect any two in either order. Unmatched runes reset the first half of the recipe.
+
+| Pair / action | Power | Effect |
+|---|---|---|
+| ◆ energy crystal + ● gold coin | **FIREWORK SNAKE** | For **4 seconds**, every body segment shoots toward nearby spiders (or radially when no target) |
+| ◆ energy crystal + ✧ purple amulet | **SCATTER & REBUILD** | Body detaches into autonomous shooting drones for **3.4 seconds**, then returns; COIL KILL unavailable while detached |
+| ● gold coin + ✧ purple amulet | **LIZARD TAIL** | Last **5** segments detach into a decoy, attracting spiders; explode after **3 seconds**, then regrow |
+| ✧ purple amulet + ✧ purple amulet | **CUT THE LINE** | Tail whip damages and knocks back enemies along the trailing body |
+| Bite a **small spider mouth-first** | **FIREWORK SNAKE** | Instant firework, with **12-second** bite recharge |
+| Press **BOOST** while making a sharp turn | **CUT THE LINE** | One whip per BOOST activation |
+
+The older pale/white collectible crystal remains **metal (+2)**. The **cyan energy crystal** is a different item for morph recipes.
+
+**Test result:** all nine waves, both level rewards, final boss, BUILD, COIL, normal bite and four powers were tested in a browser environment with no JavaScript errors. This is a playtest build; mobile feel and balancing remain to be refined.
+
+**Recovery:** branch `backup/v11-before-morph-lab` retains the v1.1 build.
+
+The live page is a self-contained HTML5 game: no separate asset server is necessary. The sprite atlases remain in `assets/` for future game development.
