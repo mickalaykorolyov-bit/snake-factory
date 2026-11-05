@@ -998,3 +998,85 @@ function resetStage(){
  game.t=0;game.spawnClock=-2.5;game.spawnSequence=0;game.emitClock=0;game.boss=null;game.bossSpawned=false;
  game.enemies=[];game.shots=[];game.webShots=[];game.webSlow=0;game.webStacks=0;game.webHitSlot=0;game.coilTimer=0;game.coilArmed=true;game.coilFX=[];game.pickups=[];game.effects=[];game.stains=[];game.visualFX=[];
   game.runeFirst=null;game.powerSpawnClock=0;game.powerSpawnIndex=0;game.fireworkTimer=0;game.fireworkTick=0;game.biteCooldown=0;game.scatterTimer=0;game.scatterPods=[];game.scatterReturn=[];game.tailTrap=null;game.whipFX=[];game.whipBoostUsed=false;
+ game.hp=Math.min(100,game.hp+18);
+ game.head={x:210,y:355,ang:-Math.PI/2};game.trail=[];
+ for(let i=0;i<170;i++)game.trail.push({x:210,y:355+i*3});
+ for(let i=0;i<9;i++)addPickup(R(48,374),R(176,665),i%3?'scrap':'part');
+  for(const [type,x,y] of [['runeCrystal',244,325],['runeCoin',305,460],['runeAmulet',160,550]])addPickup(x+R(-22,22),y+R(-22,22),type);
+ game.modules.forEach(m=>m.cooldown=0);
+ game.waveComplete=false;game.clearRewardPending=false
+}
+function nextWave(){
+ if(game.mode!=='garage')return;
+ if(game.waveComplete){
+   if(!game.clearRewardPending){game.wave=Math.min(3,game.wave+1)}
+   resetStage();
+   if(game.wave===1){game.hp=100;notify('РІВЕНЬ '+game.level+' · '+levelData().title)}
+   else notify('ХВИЛЯ '+game.wave+'/3 · ВИЖИВАЙ!');
+ }
+ game.mode='play';$('workshop').classList.add('hidden');showHud(true);updateHud()
+}
+
+function renderGarage(){let board=$('board');board.innerHTML='';for(let y=0;y<ROWS;y++)for(let x=0;x<COLS;x++){let m=gridOwner(x,y),b=document.createElement('button');b.type='button';b.className='cell'+(m?' occupied':'')+(selected&&selected.source==='installed'&&selected.id===m?.id?' marked':'');b.dataset.x=x;b.dataset.y=y;if(m){b.style.setProperty('--item-color',KINDS[m.kind].color);let cells=occupiedCells(m),first=cells[0];if(first[0]===x&&first[1]===y)b.innerHTML=iconHtml(m.kind);if(m.level>1){const lv=document.createElement('em');lv.textContent=m.level;b.appendChild(lv)}}b.addEventListener('click',()=>boardTap(x,y));board.appendChild(b)}
+let offers=$('offers');offers.innerHTML='';game.offers.forEach(o=>{let d=KINDS[o.kind],b=document.createElement('button');b.type='button';b.className='offer'+(selected?.source==='offer'&&selected.id===o.id?' selected':'');b.style.setProperty('--item-color',d.color);b.innerHTML='<span class="symbol">'+iconHtml(o.kind)+'</span><span class="name">'+d.name+(o.level>1?' '+o.level:'')+'</span><span class="dims">'+d.shape.length+' кліт.</span>';b.addEventListener('click',()=>{selected={source:'offer',id:o.id};setHint(d.help+' • Обери місце на сітці.');renderGarage()});offers.appendChild(b)});
+if(!game.offers.length){offers.innerHTML='<div style="grid-column:1/-1;text-align:center;color:#809aae;padding:18px;font-size:12px">Немає деталей. Збирай ящики ⚙ на арені.</div>'}
+$('capacityLabel').textContent=capacity()+' / 20';$('offerCount').textContent=game.offers.length+' доступно';$('shopstat').textContent='⚙ МЕТАЛ '+game.scrap;let buy=$('buyModule');buy.disabled=game.scrap<10||game.offers.length>=11;buy.textContent=game.offers.length>=11?'▣ ІНВЕНТАР ПОВНИЙ':'⚙ СТВОРИТИ МОДУЛЬ · 10 МЕТАЛУ';renderBodyPreview()}
+function renderBodyPreview(){
+ const el=$('bodyPreview'),out=moduleSlots(),slots=bodyCount();
+ $('bodyLengthLabel').textContent=slots+' сегментів';el.innerHTML='';
+ const head=document.createElement('span');head.className='bodySlot headSlot';head.textContent='☠';head.title='Голова змійки';el.appendChild(head);
+ for(let i=1;i<=slots;i++){const m=out.get(i),d=document.createElement('span');d.className='bodySlot'+(m?' armed':'');d.title=m?KINDS[m.kind].name+' (L'+m.level+') · позиція '+i:'Каркас · сегмент '+i;
+  if(m){d.innerHTML=iconHtml(m.kind)}else d.textContent='▪';el.appendChild(d)}
+}
+function setHint(str,err=false){let el=$('hint');el.textContent=str;el.style.borderColor=err?'#b84c71':'#2e4c64';el.style.color=err?'#ff9bb4':'#c5d7e8'}
+function install(item,x,y){const shape=rotateShape(KINDS[item.kind].shape,item.rot||0);let cells=shape.map(([dx,dy])=>[x+dx,y+dy]);if(cells.some(([a,b])=>a<0||a>=COLS||b<0||b>=ROWS)){setHint('Не вміщається. Спробуй повернути деталь кнопкою ↻.',true);return false}if(cells.some(([a,b])=>gridOwner(a,b))){setHint('Ці клітинки зайняті. Постав деталь на порожнє місце.',true);return false}
+// Adjacent same-type parts of same level automatically merge: use placed part, no extra space taken.
+let neighbor=game.modules.find(m=>m.kind===item.kind&&m.level===item.level&&m.level<3&&occupiedCells(m).some(([a,b])=>cells.some(([c,d])=>Math.abs(c-a)+Math.abs(d-b)===1)));
+if(neighbor){neighbor.level++;game.offers=game.offers.filter(o=>o.id!==item.id);game.score+=120*neighbor.level;setHint('⚡ MERGE! '+KINDS[item.kind].name+' рівня '+neighbor.level+'. Модулі стали потужнішими!');burst(game.head.x,game.head.y,KINDS[item.kind].color,20,115)}else{game.modules.push({...item,x,y,cooldown:0});game.offers=game.offers.filter(o=>o.id!==item.id);setHint('✓ '+KINDS[item.kind].name+' встановлено. Змійка отримала новий сегмент!')}selected=null;renderGarage();return true}
+function boardTap(x,y){if(selected?.source==='offer'){let item=game.offers.find(o=>o.id===selected.id);if(item)install(item,x,y);return}let owner=gridOwner(x,y);if(owner){selected={source:'installed',id:owner.id};setHint(KINDS[owner.kind].name+' · рівень '+owner.level+'. Можна зняти та переставити.');renderGarage()}else if(selected?.source==='installed'){selected=null;renderGarage()}}
+function rotateSelected(){if(selected?.source!=='offer'){setHint('Спочатку обери деталь із нижнього списку.',true);return}let m=game.offers.find(o=>o.id===selected.id);if(!m)return;m.rot=(m.rot+1)%4;let s=rotateShape(KINDS[m.kind].shape,m.rot),w=Math.max(...s.map(a=>a[0]))+1,h=Math.max(...s.map(a=>a[1]))+1;setHint('↻ Повернуто: '+w+'×'+h+'. Торкнись клітинки для встановлення.');renderGarage()}
+function removeSelected(){if(selected?.source!=='installed'){setHint('Обери встановлений модуль на сітці, щоб зняти його.',true);return}let i=game.modules.findIndex(m=>m.id===selected.id);if(i<0)return;if(game.modules.length<2){setHint('Не можна зняти останній бойовий модуль.',true);return}let m=game.modules.splice(i,1)[0];game.offers.push({...m});selected={source:'offer',id:m.id};setHint('Модуль знято. Обери нове місце для розміщення.');renderGarage()}
+function autoBuild(){let done=0;for(const o of [...game.offers]){let fitted=false;for(let rot=0;rot<4&&!fitted;rot++){o.rot=rot;for(let y=0;y<ROWS&&!fitted;y++)for(let x=0;x<COLS&&!fitted;x++){let ss=rotateShape(KINDS[o.kind].shape,rot).map(([a,b])=>[x+a,y+b]);if(ss.some(([a,b])=>a>=COLS||b>=ROWS||gridOwner(a,b)))continue;install(o,x,y);fitted=true;done++}}}selected=null;renderGarage();setHint(done?'⚡ Авто-збірка: встановлено або об’єднано '+done+' деталей.':'Усі місця зайняті. Зніми або об’єднай деякі модулі.',!done)}
+function buyRandomModule(){
+ if(game.mode!=='garage')return;
+ if(game.scrap<10){setHint('Потрібно 10 металу. Збирай світлі кристали ◆ на арені.',true);return}
+ if(game.offers.length>=11){setHint('У списку вже 11 деталей. Встанови частину з них.',true);return}
+ game.scrap-=10;
+ let m={id:game.nextId++,kind:randomUnlockedKind(),level:1,rot:0};game.offers.push(m);
+ selected={source:'offer',id:m.id};renderGarage();setHint('✓ За 10 металу отримано '+KINDS[m.kind].name+'. Обери місце на сітці!')
+}
+function resize(){let dpr=Math.min(2,window.devicePixelRatio||1);cv.width=Math.round(cv.clientWidth*dpr);cv.height=Math.round(cv.clientHeight*dpr);screenCtx.imageSmoothingEnabled=false;ctx.setTransform(1,0,0,1,0,0);ctx.imageSmoothingEnabled=false}
+function pointerCoords(e){let rect=cv.getBoundingClientRect();return {x:(e.clientX-rect.left)*W/rect.width,y:(e.clientY-rect.top)*H/rect.height}}
+cv.addEventListener('pointerdown',e=>{if(game.mode!=='play')return;e.preventDefault();cv.setPointerCapture(e.pointerId);let p=pointerCoords(e);control.on=true;control.pid=e.pointerId;control.x=p.x;control.y=p.y});cv.addEventListener('pointermove',e=>{if(!control.on||e.pointerId!==control.pid)return;e.preventDefault();let p=pointerCoords(e),dx=p.x-control.x,dy=p.y-control.y,l=Math.hypot(dx,dy);if(l>10){control.dx=dx/l;control.dy=dy/l}});function endPointer(e){if(e.pointerId===control.pid){control.on=false;control.pid=null}}cv.addEventListener('pointerup',endPointer);cv.addEventListener('pointercancel',endPointer);
+window.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' ','w','a','s','d','W','A','S','D'].includes(e.key))e.preventDefault();if(e.key===' '){boost();return}let map={ArrowUp:[0,-1],w:[0,-1],W:[0,-1],ArrowDown:[0,1],s:[0,1],S:[0,1],ArrowLeft:[-1,0],a:[-1,0],A:[-1,0],ArrowRight:[1,0],d:[1,0],D:[1,0]};if(map[e.key]){[control.dx,control.dy]=map[e.key]}});
+$('artLegendCrystal')?.setAttribute('src',ART_SOURCES.crystal);$('artLegendGear')?.setAttribute('src',ART_SOURCES.gear);
+function practice(which){
+ setup();game.mode='play';game.level=which==='web'?2:3;game.wave=which==='web'?1:3;
+ game.hp=100;game.t=which==='web'?0:46;
+ game.spawnClock=-2.5;game.spawnSequence=0;
+ // Example combat build, only for instant-access practice. Normal campaign progression remains intact.
+ game.modules=[
+  {id:1,kind:'blaster',level:2,x:0,y:0,rot:0,cooldown:0},
+  {id:2,kind:'saw',level:1,x:3,y:0,rot:0,cooldown:0},
+  {id:4,kind:'shield',level:1,x:0,y:2,rot:0,cooldown:0},
+  {id:5,kind:which==='web'?'magnet':'tesla',level:1,x:3,y:2,rot:0,cooldown:0}
+ ];
+ if(which==='web'){
+  const e=createEnemy('weaver',clamp(game.head.x+127,35,W-35),game.head.y+20);e.webClock=.9;
+ }else{game.offers.push({id:91,kind:'tesla',level:1,rot:0})}
+ $('menu').classList.add('hidden');$('result').classList.add('hidden');$('workshop').classList.add('hidden');showHud(true);updateHud();
+ notify(which==='web'?'🕸 ТЕСТ: ПАВУКИ СТРІЛЯЮТЬ ПАВУТИНОЮ':'☠ ТЕСТ: ОТОЧИ БОСА І ЗНИЩИ МИТТЄВО');
+}
+$('start').addEventListener('click',start);$('practiceWeb').addEventListener('click',()=>practice('web'));$('practiceBoss').addEventListener('click',()=>practice('boss'));$('restart').addEventListener('click',start);$('boost').addEventListener('pointerdown',e=>{e.stopPropagation();boost()});$('garageTop').addEventListener('click',()=>openGarage(false));$('launch').addEventListener('click',nextWave);$('rotate').addEventListener('click',rotateSelected);$('remove').addEventListener('click',removeSelected);$('autobuild').addEventListener('click',autoBuild);$('buyModule').addEventListener('click',buyRandomModule);$('claimReward').addEventListener('click',claimLevelReward);
+function loop(ts){if(!last)last=ts;let dt=clamp((ts-last)/1000,0,.035);last=ts;let time=ts/1000;if(game.mode==='play')step(dt);drawWorld(time);screenCtx.imageSmoothingEnabled=false;screenCtx.drawImage(artCanvas,0,0,cv.width,cv.height);requestAnimationFrame(loop)}
+window.addEventListener('resize',resize);setup();resize();requestAnimationFrame(loop);
+window.SnakeFactoryArtDebug={version:'v1.2',assetCount:Object.keys(ART_IMG).length,images:()=>Object.fromEntries(Object.entries(ART_IMG).map(([key,im])=>[key,!!im.naturalWidth])),sampleFX:(kind,x=210,y=440)=>visualFX(kind,x,y)};
+window.SnakeFactoryDebug={getState:()=>({mode:game.mode,level:game.level,wave:game.wave,hp:game.hp,scrap:game.scrap,score:game.score,kills:game.kills,modules:game.modules.map(m=>({...m})),offers:game.offers.map(o=>o.kind),enemies:game.enemies.map(e=>e.kind),enemyDetails:game.enemies.map(e=>({kind:e.kind,x:e.x,y:e.y,hp:e.hp,isBoss:e.isBoss})),tailPosition:sampleTrail(bodyCount()*BODY_STEP),shots:game.shots.length,elapsed:game.t,bossSpawned:game.bossSpawned,nearby:game.enemies.filter(e=>Math.hypot(e.x-game.head.x,e.y-game.head.y)<100).length,coilVictims:game.coilVictims,coilCount:game.coilCount,coilCooldown:game.coilTimer,bodySegments:bodyCount(),fireworkTimer:game.fireworkTimer,fireworkCount:game.fireworkCount,biteCount:game.biteCount,biteCooldown:game.biteCooldown,scatterTimer:game.scatterTimer,scatterCount:game.scatterCount,scatterShots:game.scatterShots,tailCount:game.tailCount,tailTrap:!!game.tailTrap,whipCount:game.whipCount,comboCount:game.powerComboCount,runeFirst:game.runeFirst,powerPickups:game.powerPickups,webSlow:game.webSlow,webShots:game.webShots.length,webCastCount:game.webCastCount,head:{...game.head}}),
+  triggerPower:(kind)=>triggerPower(kind,'debug'),getPickups:()=>game.pickups.map(p=>({x:p.x,y:p.y,type:p.type})),spawnAt:(kind,x,y)=>createEnemy(kind,x,y),spawnToken:(type,x=game.head.x+15,y=game.head.y-20)=>addPickup(x,y,type),eatSpider:()=>{let e=createEnemy('bug',game.head.x+Math.cos(game.head.ang)*23,game.head.y+Math.sin(game.head.ang)*23);return e.kind},
+  spawnWeaver:()=>createEnemy('weaver',clamp(game.head.x+120,45,W-45),clamp(game.head.y+30,150,H-80)),
+  forceWeb:()=>applyWebSlow(3),
+  // Test helper: install a deterministic closed ring around a single target.
+  testCoil:(kind='bug',count=1)=>{if(game.mode!=='play')return {error:'not playing'};game.coilTimer=0;game.coilArmed=true;const cx=210,cy=430,r=43;game.head={x:cx+r,y:cy,ang:-Math.PI/2};game.trail=[];for(let i=0;i<145;i++){const angle=i*2*Math.PI/135;game.trail.push({x:cx+r*Math.cos(angle),y:cy+r*Math.sin(angle)})}const targets=[];for(let i=0;i<count;i++)targets.push(createEnemy(kind,cx+(i-(count-1)/2)*11,cy,kind==='boss'));const old=game.coilVictims;const ok=checkCoil();return {ok,kills:game.coilVictims-old,targetsGone:targets.every(e=>!game.enemies.includes(e)),coilCount:game.coilCount}},skipWave:()=>{if(game.mode==='play'){if(game.wave===3){if(!game.bossSpawned)spawnBoss();game.boss.hp=0;for(let i=game.enemies.length-1;i>=0;i--){if(game.enemies[i].isBoss){let e=game.enemies.splice(i,1)[0];killEnemy(e);break}}}else game.t=waveDuration()+1}},openGarage:()=>openGarage(false),spawnBoss,boost,claimLevelReward,completeWave};
+})();
+</script>
+</body></html>
