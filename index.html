@@ -238,17 +238,17 @@ html,body{background:#040915!important;color:#f2e7cf!important}
 <section id="hud">
  <div class="toprow"><div class="brand">SNAKE <span>FACTORY</span></div><div class="hudmetrics"><span class="chip" id="waveLabel">L1 · W1/3</span><span class="chip" id="scrapLabel">⚙ 0</span><button id="garageTop">⚒ BUILD</button></div></div>
  <div class="hudhealth"><span class="smalltext">❤ CORE</span><div class="hp-track"><div id="hpfill"></div></div><span class="smalltext" id="hpLabel">100</span></div>
- <div id="wavebar"><span class="smalltext" id="timerLabel">0:38</span><div class="wave-track"><div id="wavefill"></div></div><span class="smalltext" id="partsLabel">◈ 2 PARTS</span></div>
- <div id="missionLine" class="missionLine">01 / THE AWAKENING · ОТОЧУЙ ПАВУКІВ</div><div id="coilStatus" class="coilStatus">↺ COIL KILL · замкни петлю власним тілом!</div>
+ <div id="wavebar"><span class="smalltext" id="timerLabel">0:38</span><div class="wave-track"><div id="wavefill"></div></div><span class="smalltext" id="partsLabel">▰ 6 BODY · ⚙ 2</span></div>
+ <div id="missionLine" class="missionLine">01 / THE AWAKENING · ОТОЧУЙ ПАВУКІВ</div><div id="coilStatus" class="coilStatus">↺ COIL ЗАБЛОКОВАНО · ЗБЕРИ 12 СЕГМЕНТІВ</div>
  <div class="powerhud"><span id="runeStatus">◈ РУНА: —</span><span id="powerStatus">✦ ЗБЕРИ ДВІ РУНИ</span></div>
- <div class="pickup-legend"><span class="legendpill"><img class="hudicon" alt="" id="artLegendCrystal"> КРИСТАЛ = +2 МЕТАЛ</span><span class="legendpill"><img class="hudicon" alt="" id="artLegendGear"> ЯЩИК = НОВА ДЕТАЛЬ</span><span class="legendpill"><span class="green">✦</span> АВТОСТРІЛЬБА УВІМКНЕНА</span><span id="tutorialStatus">🛡 НАВЧАННЯ: БЕЗ СМЕРТЕЙ</span></div>
+ <div class="pickup-legend"><span class="legendpill"><img class="hudicon" alt="" id="artLegendCrystal"> КРИСТАЛ = +2 МЕТАЛ</span><span class="legendpill"><img class="hudicon" alt="" id="artLegendGear"> ЯЩИК = НОВА ДЕТАЛЬ</span><span class="legendpill">▰ ЗЕЛЕНИЙ БЛОК = +1 КОРПУС</span><span class="legendpill"><span class="green">✦</span> АВТОСТРІЛЬБА УВІМКНЕНА</span><span id="tutorialStatus">🛡 НАВЧАННЯ: БЕЗ СМЕРТЕЙ</span></div>
 </section>
-<div id="bottom"><div class="controlhint"><div class="dpad">↺</div><div>ЗАМИКАЙ ПЕТЛІ<br>BOOST + ПОВОРОТ = БАТІГ</div></div><button id="boost"><strong>➤</strong><span id="boostText">BOOST</span></button></div>
+<div id="bottom"><div class="controlhint"><div class="dpad">▰</div><div>ЗРОСТАЙ ДО 12 СЕГМЕНТІВ<br>BOOST + ПОВОРОТ = БАТІГ</div></div><button id="boost"><strong>➤</strong><span id="boostText">BOOST</span></button></div>
 <div id="toast" role="status"></div>
 <section id="menu" class="overlay"><div class="menucontent">
  <div class="eyebrow">THREE LEVEL CAMPAIGN / 1993</div><h1 class="logo">SNAKE<span>FACTORY</span></h1><div class="heroicon" aria-hidden="true"></div>
  <p class="sublogo">ТВОЄ ТІЛО — ЗБРОЯ! Оточуй ворогів петлею, збирай руни та перетворюй змійку просто під час битви.</p>
-  <div class="pickup-intro compactHelp"><div><strong>↺ COIL:</strong> замкни петлю тілом — вороги всередині гинуть миттєво.</div><div><strong>✦ РУНИ:</strong> ◆ блакитний кристал, ● золота монета, ✧ фіолетовий амулет. Збери пару.</div><div><strong>☠ ПАЩА:</strong> з'їж малого павука головою — отримай FIREWORK на 4 секунди.</div><div><strong>⚙ BUILD:</strong> модулі стають частинами тіла; зброя стріляє автоматично.</div></div>
+  <div class="pickup-intro compactHelp"><div><strong>▰ РІСТ:</strong> збирай зелені сегменти з павуків. Починаєш із 6, COIL відкривається на 12.</div><div><strong>↺ COIL:</strong> замкни петлю довгою змійкою — вороги всередині гинуть миттєво.</div><div><strong>✦ РУНИ:</strong> ◆ блакитний кристал, ● золота монета, ✧ фіолетовий амулет. Збери пару.</div><div><strong>☠ ПАЩА:</strong> з'їж малого павука головою — отримай FIREWORK на 4 секунди.</div><div><strong>⚙ BUILD:</strong> павуки-різаки можуть відривати модулі. Підбирай випалі деталі та став знову!</div></div>
  <div class="runeRecipes" aria-label="Комбінації рун"><div><b>◆ + ●</b> FIREWORK · 4с шквал куль</div><div><b>◆ + ✧</b> SCATTER · сегменти-дрони</div><div><b>● + ✧</b> LIZARD · хвіст-приманка</div><div><b>✧ + ✧</b> CUT · удар батогом</div><div class="runeExtra">З'ЇЖ ПАВУКА ПАЩЕЮ → FIREWORK!</div></div><div class="pills"><span>↺ COIL KILL</span><span>◆ РУНИ</span><span>⚙ BUILD</span><span>✺ TRANSFORM</span></div>
  <button class="primary" id="start">ПОЧАТИ ГРУ ▶</button><div class="practiceRow"><button type="button" id="practiceWeb">🕸 ТЕСТ ПАВУТИНИ · L2</button><button type="button" id="practiceBoss">☠ ТЕСТ БОСА · L3</button></div><p class="menufoot">Один палець • 3 рівні × 3 хвилі • Майстерня<br>ПК: WASD / стрілки • Пробіл — прискорення</p>
 </div></section>
@@ -256,7 +256,7 @@ html,body{background:#040915!important;color:#f2e7cf!important}
  <div class="shophead"><div><small id="shopLevel">MODULAR LAB / LEVEL 01</small><h2>⚒ WORKSHOP</h2></div><span class="shopstat" id="shopstat">⚙ SCRAP 0</span></div>
  <div class="shopnote" id="shopnote">Порядок деталей на сітці визначає їхній порядок на тілі. Пилка на хвості атакує павуків позаду!</div>
  <div class="shoplabel"><span>ТВІЙ ІНВЕНТАР · 5×4</span><span id="capacityLabel">0 / 20</span></div>
- <div id="board" aria-label="Сітка для монтажу бойових модулів"></div><div class="shoplabel"><span>ЗМІЙКА: ГОЛОВА → ХВІСТ</span><span id="bodyLengthLabel">14 сегментів</span></div><div id="bodyPreview" class="bodyPreview" aria-label="Послідовність бойових модулів на тілі"></div>
+ <div id="board" aria-label="Сітка для монтажу бойових модулів"></div><div class="shoplabel"><span>ЗМІЙКА: ГОЛОВА → ХВІСТ</span><span id="bodyLengthLabel">6 сегментів · COIL від 12</span></div><div id="bodyPreview" class="bodyPreview" aria-label="Послідовність бойових модулів на тілі"></div>
  <div class="shopactions"><button class="secondary" id="rotate">↻ ПОВЕРНУТИ</button><button class="secondary" id="remove">↶ ЗНЯТИ МОДУЛЬ</button><button class="secondary" id="autobuild">⚡ АВТО</button></div>
  <div class="shoplabel"><span>ЗІБРАНІ ДЕТАЛІ</span><span id="offerCount">0 доступно</span></div>
  <div id="offers"></div>
@@ -351,12 +351,36 @@ function iconHtml(kind) {
 const WEB_SPRITES={"ball":["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAr0lEQVR4XmNgQALsbLz/kfl4AUhx19S1/0E0DGPTwIjNhub+BWDh2sIEMP3z12e4OhaYBpCpMIUw8PbBboZp65+CNP6HaYJrgAFLMz0GQ+m3DOefCjOcfwoSBRNwALYKZDrINBAAKUQGx09dgjsPZAvcBpDVIGBphqohK1Aaqn8B2GlMME/BPAgDIGeBAMggYQVXcACg2ICsEKToOFgA4X6Yp0kOVjggNuJQADFJAwCH4Fg3GrfoXgAAAABJRU5ErkJggg==","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAArklEQVR4XmNgQAPsbLz/u6au/Q+i0eVwApBiojTAFIJs+PLsBFgTukYWmDUgieb+BSi2wvi1hQn/f/76zAiShGsAgaxAaYbzT4XB7PNPGRgszYQZjp+6hGIIE4gHM33a+qcokobSb8F8kE0wp4E1IAOYIogtENuQAdhdMN0gkyzN9DAMEFZwBYuB/MGE7lmQm0G2gGgQhjkT2VlwG2DBCApSWOTBbMcbL0RHHDEAAKKiVkXIjK0cAAAAAElFTkSuQmCC","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAq0lEQVR4XmNgIADY2Xj/E1IDVgTDXVPXgtkwTYzIumESzf0LwMK1hQlg+uevz3B1LDANIMUwhTDw9sFuhmnrn4I0/odpgmuAAUszPQZD6bcM558KM5x/ChIFE3DACHMGyDQQAClEBsdPXYI7D2QLE8wZIKtBGB1kBUqDMQwwgTwG0gnzIAyAnAUCIEOEFVzhHmdBDgEQACkEKToO5mHaSHKwYgX4Io4gQE8aAAuAWXiwPj0vAAAAAElFTkSuQmCC","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAqUlEQVR4XmNgoAZgZ+P9D8I4zYJJwhR2TV37/8uzE2BNyHIgA5hAAs39C8CKQTQIwwCMj6yGESQJM+Xtg90M558Ko7jk+KlLDLWFCWCxn78+MzIhmzZt/VMUxYbSb8F8ZFvhGmAApggE0G0DAbCTYM4CmWRppodhi7CCK9g5IAkW9KADuTkrUBruvOP44gkWjKAgBQUttvhA8QPIWhAGOQEGYE4hCHDFNABea1baOaeVIQAAAABJRU5ErkJggg=="],"wrap":["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAyUlEQVR4XsVSuQ0CQRBbToRUADHpSReAIKAKyiCniMsp46ogQIKMlBqo4ZBX8sk7OyNEhLP5PB7vpvRvzFRAfxlGjc+nY64zz1hREFwfr/GwWRdDBIe1B2giC3Sbt5moFNzuz4izUgMUcvfbNie71TstlruJnB6grguyMhTVPNxozaSRXr4BKzcTNga83HQCtnIYEtHM1wBYp3ySoacy8ZuDIAlfxd6IzapOPxVR/QOS6KAlCX8ihtUs+kAC9YWY25u9Ji8XnvArPi0ecYLPMkD4AAAAAElFTkSuQmCC","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAs0lEQVR4XmNgoDbomrr2PwgTay4TssLDp2/DNaIbgstgRnQDbE1V4WLohpRlB6OoBwEUF+ADyJqRXYpim6WZHsPxU5fwGgRSAwIwl7KAOMhOBSkwlH7LMG39UxRbYWrQLWBC1gwzFV0zDIAMB2GQd+D6QAyYn2BsZD/CAEgMb/SCFMA0IrOxGYAsjxItIBtggYQLgMIApAY5usEAm/OwuQRdHUo6QJbEFg4EAa5AxOaSwQMACG2Y3jwn0YgAAAAASUVORK5CYII="],"wrap_head":["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABZklEQVR4Xu2VMW4CQRAED0TIC0zslAxkAj/C4hcm5xHO/QxeQYCEM1I/xqiDlobZ6dm742wCXyUIvLPT09u7bpqRkf/OpGbAx+fhx67Z77ZpDdbX1nTi+PV9IwANvCigfr8bL4BQxK81JkpAm6mzWlI9z8162ZzOl7uczDIRCqC9KMQUr6vnYl2UA9+ItVkwi41RhIm5mRVgm/pm/m+0PxJvCQVggS2kKPD+tmjmTy+pc6TNdZz6w/WKORmyAFRzwIb8tK6oQM5UuqKjUGs99syjrFgKBwBTz6mJ/x6hatRNCgXYDMAJm4EM2owjwOQMcJaFQoC1DHlgJjiZOktLdAOUiNABayMEWSEgEmF/o+ja+YPwOtkJ1CMSichukHoP0qe4jd0ZCB6f8jZvQkhmIwOqRAzyH1MJoDs1EUTtU8UXqoa8dtmGvUSwYW1Sbt41N/IpJiq9iq7r5Uv4V4wCHu7AoPS5ZleC3i32ajLbygAAAABJRU5ErkJggg==","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABOklEQVR4Xu1Vuw0CMRQ7EKvQ0oFEwRSMQc8Q9IzBFBQg6GjpmYD+0CssmfB+4eiIu7vkJX62k3RdQ8O/Y5QRYLc/9Dxvu1mn6jIIFzpe7/1qPn2bB0IlESb6E5KyYNk9A2PRPA9jbxBdZEhYHYuC3h4TbZA3XC5m3elyc0kMgZoBIYCO0AHnwFPEgqXQBwEt8QiiFTLrvxbgFErf5BubPB9n01OEEXMj/01IITblxTLS154M9RTAbwkge2f5WELIS63gKzW4iJXISspKRXeEGkLulE9BJlQyR46tACrgW1NQvQcYKAYRjwTGmER5jafAUpfBQ0A13zHGpyaC+Rhl/QayD1YJ9zXkG1HrOOpO7JMceDaEGYjgLS4NRBmoJsDWyOLaW1GD0AI+TpbfQ0i4BGpQKlNT29Dw33gB0GohiZpiy+sAAAAASUVORK5CYII="],"break":["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAcUlEQVR4XmNgGAWjgK7g8Onb/0m1kIlUDaQCvBaAXIzP1YTkiQYwS5Ato5rhuACx8cFItDfQALoFtqaqWM3CawGyIbgMIBsQGwSEAF4fwAC6T2B8YnxFdD5ANgzGJsaXBC3AZQgxricZEOPiUTAKqA8AjxFBhODtl0oAAAAASUVORK5CYII=","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAYElEQVR4XmNgGAWjgK7g8Onb/+lqITGAEZciZNfamqoSVIdPzSjAG/lM1AofklIYSDFJGqCAKD3kGk4TQIyLCcYBMYZQBJAtwGYZIQfg9QFIM11zKCHXYgME42AU0BwAAIaGO7p/rmlXAAAAAElFTkSuQmCC","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAW0lEQVR4XmNgGAVDCnRNXft/SDmYdgAUFKQEB6nqyQJ0sWToA2zxxkR3b5GSerABvPppnhIodf3gA8T4iBg1OAGxmolVhwKwacJlED4L6J8P8AFygmJw+YAcAABdazqu5mQQ9AAAAABJRU5ErkJggg==","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAV0lEQVR4XmNgGFGga+ra/6R6mIlUDYMfkBMM+ABVg4jajsMK6GLJKCAI6BIPMEvgyZTmttLUApoaPgrIBqTGC0nqSVIMBeTowQCEDCEkDwe4FBJtAD0BAHaXL4J7eMcgAAAAAElFTkSuQmCC"]};
 const WEB_IMG=Object.fromEntries(Object.entries(WEB_SPRITES).map(([k,arr])=>[k,arr.map(src=>{const im=new Image();im.src=src;return im})]));
 const kindKeys=Object.keys(KINDS),COLS=5,ROWS=4,BODY_STEP=21;
-const fullBodyCount=()=>Math.min(23,12+game.level*2+Math.floor(game.modules.length/3));
-const bodyCount=()=>Math.max(8,fullBodyCount()-(game.tailTrap?game.tailTrap.segments:0));
+const START_BODY=6,MIN_BODY=4,COIL_UNLOCK=12,MAX_BODY=24;
+// The body is earned and can be lost; no automatic length scaling with level.
+const fullBodyCount=()=>Math.min(MAX_BODY,Math.max(MIN_BODY,game.bodyLength));
+const bodyCount=()=>Math.max(MIN_BODY,fullBodyCount()-(game.tailTrap?game.tailTrap.segments:0));
+function growBody(n=1,quiet=false){
+ const before=game.bodyLength;game.bodyLength=Math.min(MAX_BODY,game.bodyLength+n);
+ const added=game.bodyLength-before;if(!added)return 0;
+ game.bodyGrown+=added;game.score+=added*35;
+ if(!quiet){burst(game.head.x,game.head.y,'#a8ffbd',12,75);notify('▰ +'+added+' СЕГМЕНТ · ДОВЖИНА '+bodyCount());}
+ if(before<COIL_UNLOCK&&bodyCount()>=COIL_UNLOCK){game.coilArmed=true;game.coilUnlocked=true;notify('↺ COIL KILL ВІДКРИТО! ЗАМИКАЙ ПЕТЛІ!')}
+ return added;
+}
+// A sheared body segment breaks off at the actual contact point.
+// Its mounted weapon drops intact and can be picked up for later BUILD recovery.
+function shearSegment(slot){
+ if(game.bodyLength<=MIN_BODY||game.segmentDamageCD>0)return false;
+ const n=bodyCount(),hit=Math.max(1,Math.min(slot,n)),pos=sampleTrail(hit*BODY_STEP);
+ const attached=moduleSlots();let module=attached.get(hit);
+ if(!module&&game.modules.length>=game.bodyLength){module=attached.get(n)||game.modules[game.modules.length-1]}
+ game.bodyLength--;game.bodyLost++;game.segmentDamageCD=4.1;game.coilTimer=Math.max(game.coilTimer,.7);
+ if(module){const i=game.modules.findIndex(m=>m.id===module.id);if(i>=0){game.modules.splice(i,1);addPickup(pos.x,pos.y,'damagedModule',module.kind,{...module});game.modulesLost++;}}
+ burst(pos.x,pos.y,'#ff745d',17,95);visualFX('hit_spark',pos.x,pos.y);
+ game.effects.push({x:pos.x,y:pos.y,vx:R(-65,65),vy:R(-75,-20),life:.85,max:.85,size:10,color:'#a2b5d5'});
+ notify(module?'✂ СЕГМЕНТ І ЗБРОЮ ВИБИТО! ПІДБЕРИ МОДУЛЬ!':'✂ ПАВУК ВІДІРВАВ СЕГМЕНТ!');
+ return true;
+}
 function moduleSlots(){const n=bodyCount(),mods=getMods(),out=new Map();mods.forEach((m,i)=>{let slot=mods.length===1?2:2+Math.round(i*(n-2)/(mods.length-1));while(out.has(slot)&&slot<n)slot++;if(slot>n){slot=n;while(out.has(slot)&&slot>1)slot--}out.set(slot,m)});return out}
 const LEVELS=[
- {title:'THE AWAKENING',subtitle:'ПРОБУДЖЕННЯ',goal:'ОТОЧИ ПАВУКІВ: замкни петлю тілом — миттєва смерть',durations:[39,39,52],reward:'magnet',rewardMetal:15,info:'Магніт притягує кристали й деталі. Тепер збирати здобич легше.'},
- {title:'THE INFESTATION',subtitle:'ЗАРАЖЕНИЙ ЦЕХ',goal:'Павуки стріляють павутиною — маневруй і оточуй',durations:[40,42,60],reward:'tesla',rewardMetal:18,info:'TESLA автоматично вражає групи ворогів електричними розрядами.'},
+ {title:'THE AWAKENING',subtitle:'ПРОБУДЖЕННЯ',goal:'РОСТИ: зелені блоки подовжують корпус; COIL від 12',durations:[39,39,52],reward:'magnet',rewardMetal:15,info:'Магніт притягує кристали й деталі. Тепер збирати здобич легше.'},
+ {title:'THE INFESTATION',subtitle:'ЗАРАЖЕНИЙ ЦЕХ',goal:'Павуки-різаки відривають сегменти та модулі!',durations:[40,42,60],reward:'tesla',rewardMetal:18,info:'TESLA автоматично вражає групи ворогів електричними розрядами.'},
  {title:'THE SKULL FACTORY',subtitle:'СЕРЦЕ ФАБРИКИ',goal:'Оточуй натовпи і павука-черепа: COIL KILL!',durations:[43,45,70],reward:null,rewardMetal:0,info:'Переможи головного боса фабрики.'}
 ];
 const BELTS=[{x:58,y:265,w:300,h:43,dir:1,speed:54},{x:58,y:508,w:300,h:43,dir:-1,speed:58}];
@@ -369,7 +393,7 @@ const tutorialProtected=()=>game.level===1&&game.wave<=2;
 const rotateShape=(shape,rot)=>{let s=shape.map(a=>a.slice());for(let i=0;i<rot;i++){s=s.map(([x,y])=>[-y,x]);let mx=Math.min(...s.map(a=>a[0])),my=Math.min(...s.map(a=>a[1]));s=s.map(([x,y])=>[x-mx,y-my])}return s};
 const R=(a,b)=>a+Math.random()*(b-a),clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y),rnd=(arr)=>arr[Math.random()*arr.length|0];
 let game,control={on:false,pid:null,x:0,y:0,dx:0,dy:-1},last=0,frameN=0,toastTimer=null,selected=null;
-function createGame(){return {mode:'menu',level:1,wave:1,t:0,elapsed:0,score:0,kills:0,scrap:0,hp:100,invuln:0,boost:0,boostCD:0,modules:[{id:1,kind:'blaster',level:1,x:0,y:0,rot:0,cooldown:0},{id:2,kind:'saw',level:1,x:3,y:0,rot:0,cooldown:0}],offers:['booster','blaster','blaster'].map((kind,i)=>({id:10+i,kind,level:1,rot:0})),nextId:30,head:{x:210,y:355,ang:-Math.PI/2},trail:[],enemies:[],shots:[],pickups:[],effects:[],stains:[],objects:[],spawnClock:-3.2,spawnSequence:0,emitClock:0,boss:null,bossSpawned:false,waveComplete:false,clearRewardPending:false,carried:0,toastClock:0,bulletTime:0,shake:0,seenScrap:false,seenPart:false,webShots:[],webSlow:0,webStacks:0,webHitSlot:0,webCastCount:0,coilTimer:0,coilArmed:true,coilFX:[],coilCount:0,coilVictims:0,bodyKills:0,coilHintSeen:false,
+function createGame(){return {mode:'menu',level:1,wave:1,t:0,elapsed:0,score:0,kills:0,scrap:0,hp:100,invuln:0,boost:0,boostCD:0,modules:[{id:1,kind:'blaster',level:1,x:0,y:0,rot:0,cooldown:0},{id:2,kind:'saw',level:1,x:3,y:0,rot:0,cooldown:0}],offers:['booster','blaster','blaster'].map((kind,i)=>({id:10+i,kind,level:1,rot:0})),nextId:30,head:{x:210,y:355,ang:-Math.PI/2},trail:[],enemies:[],shots:[],pickups:[],effects:[],stains:[],objects:[],spawnClock:-3.2,spawnSequence:0,emitClock:0,boss:null,bossSpawned:false,waveComplete:false,clearRewardPending:false,carried:0,toastClock:0,bulletTime:0,shake:0,seenScrap:false,seenPart:false,webShots:[],webSlow:0,webStacks:0,webHitSlot:0,webCastCount:0,coilTimer:0,coilArmed:true,coilFX:[],coilCount:0,coilVictims:0,bodyKills:0,coilHintSeen:false,bodyLength:START_BODY,bodyGrown:0,bodyLost:0,modulesLost:0,modulesRecovered:0,segmentDamageCD:0,coilUnlocked:false,
  // Morph Lab — new mechanics preserve the former combat, BUILD and wave rules.
  runeFirst:null,powerSpawnClock:0,powerSpawnIndex:0,
  fireworkTimer:0,fireworkTick:0,biteCooldown:0,fireworkCount:0,biteCount:0,
@@ -377,11 +401,12 @@ function createGame(){return {mode:'menu',level:1,wave:1,t:0,elapsed:0,score:0,k
  tailTrap:null,tailCount:0,whipCount:0,whipFX:[],whipBoostUsed:false,
  powerComboCount:0,powerPickups:0}};
 function setup(){game=createGame();for(let i=0;i<170;i++)game.trail.push({x:210,y:355+i*3});for(let i=0;i<11;i++)addPickup(R(47,375),R(150,660),i%3===0?'part':'scrap');
+ addPickup(246,312,'segment');addPickup(176,447,'segment');
  for(const [type,x,y] of [['runeCrystal',238,317],['runeCoin',325,425],['runeAmulet',160,485],['runeAmulet',286,605]])addPickup(x,y,type);}
-function start(){setup();game.mode='play';$('menu').classList.add('hidden');$('result').classList.add('hidden');$('workshop').classList.add('hidden');showHud(true);updateHud();notify('↺ COIL KILL: ЗАМКНИ ПЕТЛЮ ТІЛОМ!')}
+function start(){setup();game.mode='play';$('menu').classList.add('hidden');$('result').classList.add('hidden');$('workshop').classList.add('hidden');showHud(true);updateHud();notify('▰ ЗБИРАЙ СЕГМЕНТИ · COIL ВІД 12!')}
 function showHud(v){$('hud').style.display=v?'block':'none';$('bottom').style.display=v?'flex':'none'}
 function notify(msg){const el=$('toast');el.textContent=msg;el.classList.add('on');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('on'),1650)}
-function addPickup(x,y,type='part',kind){game.pickups.push({x:clamp(x,30,W-30),y:clamp(y,135,H-77),type,kind:kind||randomUnlockedKind(),phase:R(0,TAU),life:40});if(game.pickups.length>44)game.pickups.shift()}
+function addPickup(x,y,type='part',kind,module=null){game.pickups.push({x:clamp(x,30,W-30),y:clamp(y,135,H-77),type,kind:kind||randomUnlockedKind(),module,phase:R(0,TAU),life:40});if(game.pickups.length>65)game.pickups.splice(game.pickups.findIndex(p=>p.type!=='damagedModule'),1)}
 const RUNE_TYPES=['runeCrystal','runeCoin','runeAmulet'];
 const RUNE_SYMBOL={runeCrystal:'◆',runeCoin:'●',runeAmulet:'✧'};
 const RECIPE={'runeCoin+runeCrystal':'firework','runeAmulet+runeCrystal':'scatter','runeAmulet+runeCoin':'tail','runeAmulet+runeAmulet':'whip'};
@@ -499,7 +524,8 @@ function triggerPower(kind,source='combo'){
  }else if(kind==='tail'){
   if(game.scatterTimer>0)recallScatter();
   if(game.tailTrap)explodeTail(false);
-  const n=Math.min(5,fullBodyCount()-8),pieces=[];
+  const n=Math.min(5,fullBodyCount()-MIN_BODY-1),pieces=[];
+  if(fullBodyCount()<9){notify('● ХВІСТ-ПРИМАНКА ВІДКРИЄТЬСЯ НА 9 СЕГМЕНТАХ');return false}
   for(let i=0;i<n;i++){const p=sampleTrail((fullBodyCount()-i)*BODY_STEP);pieces.push({...p})}
   const center=pieces.reduce((a,p)=>({x:a.x+p.x,y:a.y+p.y}),{x:0,y:0});center.x/=n;center.y/=n;
   game.tailTrap={x:center.x,y:center.y,pieces,segments:n,t:3.0,max:3.0};game.tailCount++;
@@ -595,6 +621,18 @@ function drawMorph(t){
 }
 
 function drawPickup(p,t){
+  if(p.type==='segment'){
+    const x=snap(p.x),y=snap(p.y+Math.sin(t*4+p.phase)*2);ctx.save();
+    ctx.fillStyle='#152b38';ctx.fillRect(x-12,y-11,24,22);ctx.fillStyle='#5be0a9';
+    ctx.fillRect(x-9,y-8,18,16);ctx.fillStyle='#baffdc';ctx.fillRect(x-6,y-5,12,10);
+    ctx.fillStyle='#133d36';ctx.fillRect(x-3,y-3,6,6);ctx.restore();return;
+  }
+  if(p.type==='damagedModule'){
+    const x=snap(p.x),y=snap(p.y+Math.sin(t*5+p.phase)*2);ctx.save();
+    ctx.fillStyle='#b92941';ctx.fillRect(x-14,y-14,28,28);ctx.fillStyle='#fff0c8';ctx.fillRect(x-11,y-11,22,22);
+    ctx.fillStyle='#152742';ctx.fillRect(x-8,y-8,16,16);ctx.fillStyle='#eaa569';ctx.font='bold 14px monospace';ctx.textAlign='center';ctx.fillText('⚙',x,y+5);
+    ctx.restore();return;
+  }
   if(RUNE_TYPES.includes(p.type)){
    ctx.save();const x=snap(p.x),y=snap(p.y+Math.sin(t*3+p.phase)*2),i=Math.floor(t*5)%2;
    if(p.type==='runeCrystal'){ctx.fillStyle='#60e5fb';ctx.fillRect(x-5,y-10,10,20);ctx.fillRect(x-9,y-5,18,10);ctx.fillStyle='#c8ffff';ctx.fillRect(x-3,y-8,5,6);ctx.fillRect(x+1,y+3,5,4)}
@@ -610,11 +648,11 @@ function drawPickup(p,t){
 }
 function drawPickupGuide(){
  if(game.mode!=='play'||game.wave>2)return;
- for(let type of ['scrap','part']){
+ for(let type of ['segment','scrap','part']){
   if(type==='scrap'&&game.seenScrap||type==='part'&&game.seenPart)continue;
   let p=game.pickups.filter(p=>p.type===type).sort((a,b)=>dist(a,game.head)-dist(b,game.head))[0];
   if(!p)continue;
-  let x=clamp(p.x,91,W-91),y=clamp(p.y-29,155,H-105),label=type==='scrap'?'◆ +2 МЕТАЛ':'▣ ДЕТАЛЬ → BUILD';
+  let x=clamp(p.x,91,W-91),y=clamp(p.y-29,155,H-105),label=type==='segment'?'▰ +1 СЕГМЕНТ':type==='scrap'?'◆ +2 МЕТАЛ':'▣ ДЕТАЛЬ → BUILD';
   ctx.save();ctx.font='900 11px system-ui';ctx.textAlign='center';
   ctx.fillStyle=PAL.ink;ctx.strokeStyle=type==='scrap'?PAL.cream:PAL.rust;ctx.lineWidth=2;
   ctx.fillRect(x-88,y-13,176,27);ctx.strokeRect(x-88,y-13,176,27);ctx.fillStyle=type==='scrap'?PAL.cream:PAL.rust;ctx.fillText(label,x,y+4);ctx.restore();
@@ -671,12 +709,20 @@ function drawSnake(t){
 }
 
 function drawEnemy(e,t){
- const kind=e.kind==='boss'?'boss':e.kind==='tank'?'heavy':e.kind==='brood'||e.kind==='weaver'?'medium':'small';
+ const kind=e.kind==='boss'?'boss':e.kind==='tank'||e.kind==='cutter'?'heavy':e.kind==='brood'||e.kind==='weaver'?'medium':'small';
  const meta=CLAUDE_META[kind];let anim='walk';if(e.kind==='weaver'&&e.webCast>0&&meta.animations.spit)anim='spit';
  if(kind==='boss'&&e.hp<e.max*.5&&meta.animations.walk_p2)anim='walk_p2';
  let seq=meta.animations[anim]||meta.animations.walk;
  const f=animCell(seq,t+(e.x+e.y)*.004,1);
  if(f)assetFrame(kind,f.x,f.y,meta.frameSize[0],meta.frameSize[1],e.x-meta.pivot[0],e.y-meta.pivot[1]);
+ if(e.kind==='cutter'){
+   // Flashing red cutter pincers distinguish segment-destroying spiders from tanks.
+   ctx.fillStyle=Math.floor(t*5)%2?'#ff425b':'#ffbd6a';
+   ctx.fillRect(snap(e.x-e.r-6),snap(e.y-5),8,4);
+   ctx.fillRect(snap(e.x+e.r-2),snap(e.y-5),8,4);
+   ctx.fillRect(snap(e.x-e.r-8),snap(e.y+3),5,10);
+   ctx.fillRect(snap(e.x+e.r+3),snap(e.y+3),5,10);
+ }
  if(e.hp<e.max){let w=meta.frameSize[0];ctx.fillStyle='#0c172a';ctx.fillRect(Math.round(e.x-w/2),Math.round(e.y-e.r-18),w,4);ctx.fillStyle='#f33b4c';ctx.fillRect(Math.round(e.x-w/2),Math.round(e.y-e.r-18),Math.max(0,w*e.hp/e.max),4)}
 }
 function drawWorld(t){ctx.save();ctx.imageSmoothingEnabled=false;if(game.shake>0)ctx.translate(snap(R(-game.shake,game.shake)),snap(R(-game.shake,game.shake)));drawBg(t);drawLevelFeatures(t);
@@ -706,6 +752,7 @@ function enemySpec(kind){
  // A normal spider now survives several starter shots; later upgrades still feel powerful.
  if(kind==='runner')return {hp:34+power*12,r:12,speed:104+power*8,damage:10};
  if(kind==='weaver')return {hp:82+power*12,r:16,speed:48+power*3,damage:8};
+ if(kind==='cutter')return {hp:94+power*16,r:19,speed:66+power*5,damage:10};
  if(kind==='tank')return {hp:115+power*28,r:22,speed:43+power*4,damage:18};
  if(kind==='brood')return {hp:160+power*36,r:25,speed:38+power*3,damage:19};
  if(kind==='boss')return {hp:780,r:41,speed:30,damage:28};
@@ -719,10 +766,11 @@ function insidePolygon(x,y,poly){let hit=false;for(let i=0,j=poly.length-1;i<pol
 function polygonArea(poly){let twice=0;for(let i=0;i<poly.length;i++){let a=poly[i],b=poly[(i+1)%poly.length];twice+=a.x*b.y-a.y*b.x}return Math.abs(twice/2)}
 function coilPolygon(distAlong){const points=[{x:game.head.x,y:game.head.y}];for(let d=11;d<distAlong;d+=11){points.push(sampleTrail(d))}points.push(sampleTrail(distAlong));return points}
 function checkCoil(){
-  if(game.mode!=='play'||game.coilTimer>0||game.scatterTimer>0)return false;
+  if(game.mode!=='play'||game.coilTimer>0||game.scatterTimer>0||bodyCount()<COIL_UNLOCK)return false;
  const total=bodyCount()*BODY_STEP;
  let best=null;
  // A genuine loop must close against a distant part of the body, not the neck.
+ if(bodyCount()<COIL_UNLOCK)return false;
  for(let d=150;d<=total;d+=BODY_STEP/2){
    const p=sampleTrail(d),distance=Math.hypot(game.head.x-p.x,game.head.y-p.y);
    if(distance>23)continue;
@@ -775,7 +823,7 @@ function updateWebShots(dt){const snake=game.scatterTimer>0?[{slot:0,...game.hea
 }}
 function drawWebShots(t){const frames=WEB_IMG.ball;for(const p of game.webShots){const img=frames[Math.floor(t*11+p.rot)%frames.length];if(img?.complete&&img.naturalWidth){ctx.drawImage(img,Math.round(p.x-6),Math.round(p.y-6))}else{ctx.fillStyle='#edf7ff';ctx.fillRect(Math.round(p.x-5),Math.round(p.y-5),10,10)}}}
 
-function createEnemy(kind,x,y,isBoss=false){let s=enemySpec(kind);let e={x,y,ang:0,hp:s.hp,max:s.hp,r:s.r,speed:s.speed,damage:s.damage,kind,hit:0,flash:0,isBoss,webClock:R(1.3,3.0),webCast:0,bodyHit:0};game.enemies.push(e);return e}
+function createEnemy(kind,x,y,isBoss=false){let s=enemySpec(kind);let e={x,y,ang:0,hp:s.hp,max:s.hp,r:s.r,speed:s.speed,damage:s.damage,kind,hit:0,flash:0,isBoss,webClock:R(1.3,3.0),webCast:0,bodyHit:0,clipClock:0};game.enemies.push(e);return e}
 function spawnEnemy(kind,angle){
  // Incoming spiders materialize at medium distance; never directly on the player.
  // Pincer groups use opposite approach angles, so a single gun cannot clear everything.
@@ -794,8 +842,8 @@ function spawnEnemy(kind,angle){
      kind=game.wave===1?(game.t>16&&r<.13?'runner':'bug'):
        game.wave===2?(r<.22?'runner':r<.30?'tank':'bug'):
        r<.24?'tank':r<.41?'runner':'bug';
-   }else if(game.level===2){kind=r<.27?'weaver':r<.48?'runner':r<.67?'tank':'bug'}
-   else kind=r<.27?'weaver':r<.49?'runner':r<.68?'tank':r<.75?'brood':'bug';
+   }else if(game.level===2){kind=r<.16?'cutter':r<.40?'weaver':r<.58?'runner':r<.75?'tank':'bug'}
+   else kind=r<.19?'cutter':r<.40?'weaver':r<.57?'runner':r<.77?'tank':r<.83?'brood':'bug';
  }
  burst(x,y,PAL.shade,4,16);
  return createEnemy(kind,x,y,false);
@@ -825,12 +873,16 @@ function killEnemy(e){
  bloodBurst(e.x,e.y,e.isBoss?34:18);visualFX(e.isBoss?'explosion':'hit_blood',e.x,e.y);makeBloodStain(e.x,e.y,e.isBoss?34:14);
  if(!e.isBoss){
    if(Math.random()<.28)addPickup(e.x,e.y,'part');else if(Math.random()<.44)addPickup(e.x,e.y,'scrap');
+   // Body growth is the principal reward loop, not level-based automatic inflation.
+   if(Math.random()<(e.kind==='tank'||e.kind==='brood'||e.kind==='cutter'?.68:.29))addPickup(e.x+R(-10,10),e.y+R(-10,10),'segment');
    if(Math.random()<.07)addPickup(e.x+12,e.y,'heal');
- }
+ }else{addPickup(e.x,e.y,'segment');addPickup(e.x+25,e.y,'segment')}
  if(e.isBoss){game.boss=null;completeWave();}
 }
 
-function dropModule(){if(game.modules.length<=1)return;let i=Math.floor(R(0,game.modules.length));let m=game.modules.splice(i,1)[0];let p=sampleTrail((i+1)*30);addPickup(p.x,p.y,'part',m.kind);notify('⚠ ДЕТАЛЬ ВІДІРВАНО!');burst(p.x,p.y,KINDS[m.kind].color,18,110)}
+function dropModule(){// legacy hook for HUD compatibility, segment damage is handled by shearSegment.
+ return shearSegment(Math.max(1,bodyCount()-1));
+}
 function hurt(dmg){
  if(game.invuln>0)return;
  const shields=modulesOf('shield').reduce((acc,m)=>acc+m.level,0);
@@ -840,11 +892,11 @@ function hurt(dmg){
  game.hp=Math.max(protectedStage?32:0,game.hp-damage);
  game.invuln=protectedStage?1.5:1.3;
  shake(protectedStage?2:4);burst(game.head.x,game.head.y,PAL.blood,9,82);
- if(!protectedStage&&game.modules.length>1&&Math.random()<.045)dropModule();
+ // Module loss now comes from cutters hitting physical body segments, not a random head hit.
  if(game.hp<=0)finish(false)
 }
 
-function step(dt){game.elapsed+=dt;game.t+=dt;game.invuln=Math.max(0,game.invuln-dt);game.boost=Math.max(0,game.boost-dt);game.boostCD=Math.max(0,game.boostCD-dt);game.shake=Math.max(0,game.shake-dt*28);frameN++;
+function step(dt){game.segmentDamageCD=Math.max(0,game.segmentDamageCD-dt);game.elapsed+=dt;game.t+=dt;game.invuln=Math.max(0,game.invuln-dt);game.boost=Math.max(0,game.boost-dt);game.boostCD=Math.max(0,game.boostCD-dt);game.shake=Math.max(0,game.shake-dt*28);frameN++;
 // steer toward joystick/keyboard direction
 let desired=Math.atan2(control.dy,control.dx),diff=((desired-game.head.ang+Math.PI*3)%TAU)-Math.PI;
  if(game.boost>0&&!game.whipBoostUsed&&Math.abs(diff)>1.0&&game.scatterTimer===0){game.whipBoostUsed=true;activateWhip('boost');if(game.mode!=='play')return}
@@ -852,7 +904,7 @@ let desired=Math.atan2(control.dy,control.dx),diff=((desired-game.head.ang+Math.
 game.webSlow=Math.max(0,game.webSlow-dt);if(game.webSlow===0)game.webStacks=0;game.coilTimer=Math.max(0,game.coilTimer-dt);
  updateMorph(dt);
 for(let i=game.coilFX.length-1;i>=0;i--){game.coilFX[i].life-=dt;if(game.coilFX[i].life<=0)game.coilFX.splice(i,1)}
-let engine=modulesOf('booster').reduce((v,m)=>v+m.level,0),webPenalty=game.webSlow>0?(game.webStacks>1?.45:.60):1,speed=(80+engine*14)*(game.boost>0?1.70:1)*webPenalty;let nx=game.head.x+Math.cos(game.head.ang)*speed*dt,ny=game.head.y+Math.sin(game.head.ang)*speed*dt;let mx=24,my=125;if(nx<mx||nx>W-mx||ny<my||ny>H-60){nx=clamp(nx,mx,W-mx);ny=clamp(ny,my,H-60);game.head.ang=Math.atan2(H/2-ny,W/2-nx);control.dx=Math.cos(game.head.ang);control.dy=Math.sin(game.head.ang)}game.head.x=nx;game.head.y=ny;conveyorForce(game.head,dt);
+let engine=modulesOf('booster').reduce((v,m)=>v+m.level,0),webPenalty=game.webSlow>0?(game.webStacks>1?.45:.60):1,speed=(54+Math.min(8,(game.level-1)*4)+engine*13)*(game.boost>0?1.70:1)*webPenalty;let nx=game.head.x+Math.cos(game.head.ang)*speed*dt,ny=game.head.y+Math.sin(game.head.ang)*speed*dt;let mx=24,my=125;if(nx<mx||nx>W-mx||ny<my||ny>H-60){nx=clamp(nx,mx,W-mx);ny=clamp(ny,my,H-60);game.head.ang=Math.atan2(H/2-ny,W/2-nx);control.dx=Math.cos(game.head.ang);control.dy=Math.sin(game.head.ang)}game.head.x=nx;game.head.y=ny;conveyorForce(game.head,dt);
 if(Math.hypot(nx-game.trail[0].x,ny-game.trail[0].y)>2)game.trail.unshift({x:nx,y:ny});if(game.trail.length>520)game.trail.length=520;
  game.powerSpawnClock+=dt;
  if(game.powerSpawnClock>=6.8){game.powerSpawnClock=0;spawnPowerPickup()}
@@ -876,14 +928,22 @@ let cap=(game.level===1?9:game.level===2?15:20)+(game.wave-1)*2;
    game.emitClock+=dt;
    if(game.emitClock>=6.5&&game.enemies.length<cap){game.emitClock=0;spawnEnemy('runner')}
  }
-let head=game.head,magnet=modulesOf('magnet').reduce((v,m)=>v+m.level,0);for(let i=game.pickups.length-1;i>=0;i--){let p=game.pickups[i],dd=dist(head,p);conveyorForce(p,dt,.55);if(magnet&&dd<95+magnet*42){let pow=clamp((105+magnet*42-dd)/100,.25,2);p.x+=(head.x-p.x)*dt*pow*3.3;p.y+=(head.y-p.y)*dt*pow*3.3}if(dd<24){if(RUNE_TYPES.includes(p.type)){collectRune(p.type);visualFX('hit_spark',p.x,p.y);burst(p.x,p.y,'#a8c9ff',9,80);game.pickups.splice(i,1);continue}if(p.type==='part'){
+let head=game.head,magnet=modulesOf('magnet').reduce((v,m)=>v+m.level,0);for(let i=game.pickups.length-1;i>=0;i--){let p=game.pickups[i],dd=dist(head,p);conveyorForce(p,dt,.55);if(magnet&&dd<95+magnet*42){let pow=clamp((105+magnet*42-dd)/100,.25,2);p.x+=(head.x-p.x)*dt*pow*3.3;p.y+=(head.y-p.y)*dt*pow*3.3}if(dd<24){if(RUNE_TYPES.includes(p.type)){collectRune(p.type);visualFX('hit_spark',p.x,p.y);burst(p.x,p.y,'#a8c9ff',9,80);game.pickups.splice(i,1);continue}
+ if(p.type==='segment'){growBody(1);visualFX('hit_spark',p.x,p.y);game.pickups.splice(i,1);continue}
+ if(p.type==='damagedModule'){
+   const mod=p.module;
+   if(mod&&game.offers.length<16){game.offers.push({...mod,x:undefined,y:undefined,cooldown:0});game.modulesRecovered++;notify('✓ '+KINDS[mod.kind].name+' L'+mod.level+' ПОВЕРНУТО В BUILD');game.pickups.splice(i,1);continue}
+   // Leave the recoverable part on the floor if inventory is full.
+   continue;
+ }
+ if(p.type==='part'){
  if(game.offers.length<11){game.offers.push({id:game.nextId++,kind:p.kind,level:1,rot:0});game.carried++;notify(game.seenPart?'▣ НОВА ДЕТАЛЬ: '+KINDS[p.kind].name:'▣ ЯЩИК = ДЕТАЛЬ! ВІДКРИЙ BUILD');}
  else{game.scrap+=5;notify('⚙ ІНВЕНТАР ПОВНИЙ: +5 МЕТАЛУ')}
  game.seenPart=true;game.score+=40;
  }else if(p.type==='heal'){game.hp=clamp(game.hp+24,0,100);game.score+=10;notify('✚ ЗДОРОВ’Я ВІДНОВЛЕНО')}
  else{game.scrap+=2;game.score+=15;if(!game.seenScrap){notify('◆ КРИСТАЛ = +2 МЕТАЛУ!');game.seenScrap=true}}visualFX('hit_spark',p.x,p.y);burst(p.x,p.y,p.type==='part'?'#ffd371':'#66eac9',8,90);game.pickups.splice(i,1)}else if(p.life--<=-2000){game.pickups.splice(i,1)}}
 // enemy movement + contact
-let parts=snakeParts();for(let i=game.enemies.length-1;i>=0;i--){let e=game.enemies[i];let tx=head.x,ty=head.y;
+let parts=snakeParts(),bodyTargets=game.scatterTimer>0?[{slot:0,...head}]:wholeSnake();for(let i=game.enemies.length-1;i>=0;i--){let e=game.enemies[i];let tx=head.x,ty=head.y,targetSlot=0;
  // Head-first bite: eat a small spider to instantly trigger four seconds of FIREWORK.
  let headDist=Math.hypot(e.x-head.x,e.y-head.y),face=(Math.cos(head.ang)*(e.x-head.x)+Math.sin(head.ang)*(e.y-head.y))/(headDist||1);
  if(!e.isBoss&&e.kind!=='tank'&&e.kind!=='brood'&&game.biteCooldown<=0&&headDist<e.r+14&&face>.53&&game.scatterTimer===0){
@@ -891,7 +951,7 @@ let parts=snakeParts();for(let i=game.enemies.length-1;i>=0;i--){let e=game.enem
   if(game.mode!=='play')return;
   triggerPower('firework','bite');continue;
  }
- for(const p of parts){if(Math.hypot(p.x-e.x,p.y-e.y)<Math.hypot(tx-e.x,ty-e.y))tx=p.x,ty=p.y}
+ for(const p of bodyTargets){if(Math.hypot(p.x-e.x,p.y-e.y)<Math.hypot(tx-e.x,ty-e.y)){tx=p.x;ty=p.y;targetSlot=p.slot}}
  let decoyTarget=false;if(game.tailTrap&&Math.hypot(e.x-game.tailTrap.x,e.y-game.tailTrap.y)<195){tx=game.tailTrap.x;ty=game.tailTrap.y;decoyTarget=true}
  e.ang=Math.atan2(ty-e.y,tx-e.x);let sp=e.speed*dt;
  // Runners anticipate the snake's next position; heavy spiders follow directly.
@@ -905,7 +965,18 @@ let parts=snakeParts();for(let i=game.enemies.length-1;i>=0;i--){let e=game.enem
    e.webClock-=dt;e.webCast=Math.max(0,e.webCast-dt);
    if(e.webClock<=0&&range<290){castWeb(e);e.webClock=R(4.4,6.0)}
  }
- e.x+=Math.cos(e.ang)*sp;e.y+=Math.sin(e.ang)*sp;conveyorForce(e,dt,.6);e.hit=Math.max(0,e.hit-dt);e.bodyHit=Math.max(0,e.bodyHit-dt);if(!decoyTarget&&Math.hypot(tx-e.x,ty-e.y)<e.r+14&&e.hit===0){hurt(e.damage||12);e.hit=.9}
+ e.x+=Math.cos(e.ang)*sp;e.y+=Math.sin(e.ang)*sp;conveyorForce(e,dt,.6);e.hit=Math.max(0,e.hit-dt);e.bodyHit=Math.max(0,e.bodyHit-dt);e.clipClock=Math.max(0,e.clipClock-dt);
+ if(!decoyTarget&&Math.hypot(tx-e.x,ty-e.y)<e.r+14&&e.hit===0){
+   const shears=(e.kind==='cutter'||e.kind==='tank'||e.kind==='brood'||e.isBoss);
+   const eligible=game.level>1||game.wave>=3;
+   if(targetSlot>0&&eligible&&shears&&e.clipClock<=0&&game.segmentDamageCD<=0&&game.bodyLength>MIN_BODY){
+     if(shearSegment(targetSlot)){e.hit=1.6;e.clipClock=4.8;continue}
+   }
+   // Head contact damages the core. A body hit is a smaller glancing blow.
+   hurt(targetSlot===0?(e.damage||12):Math.max(4,Math.ceil((e.damage||12)*.35)));
+   e.hit=targetSlot===0?.9:1.4;
+ }
+
 // A reinforced body and saw segments have actual physical positions and can sweep across a spider.
  if(e.bodyHit<=0){for(const p of parts){if(Math.hypot(e.x-p.x,e.y-p.y)<e.r+14){
    const power=p.m.kind==='saw'?14+p.m.level*7:p.m.kind==='shield'?6+p.m.level*3:2;
@@ -914,7 +985,7 @@ let parts=snakeParts();for(let i=game.enemies.length-1;i>=0;i--){let e=game.enem
 if(e.hp<=0){game.enemies.splice(i,1);killEnemy(e);if(game.mode!=='play')return}}
 updateWebShots(dt);
 // COIL kills happen before automatic shots, so the reward clearly comes from the loop.
-if(game.scatterTimer===0&&!game.coilArmed&&game.coilTimer===0){let far=true;for(let d=150;d<=bodyCount()*BODY_STEP;d+=BODY_STEP){const p=sampleTrail(d);if(Math.hypot(game.head.x-p.x,game.head.y-p.y)<47){far=false;break}}if(far)game.coilArmed=true}
+if(bodyCount()>=COIL_UNLOCK&&game.scatterTimer===0&&!game.coilArmed&&game.coilTimer===0){let far=true;for(let d=150;d<=bodyCount()*BODY_STEP;d+=BODY_STEP){const p=sampleTrail(d);if(Math.hypot(game.head.x-p.x,game.head.y-p.y)<47){far=false;break}}if(far)game.coilArmed=true}
 checkCoil();if(game.mode!=='play')return;
 // Shoot automatically from all mounted blasters / tesla / saws.
 fireShots(dt);
@@ -929,7 +1000,7 @@ function updateHud(){
  $('scrapLabel').textContent='⚙ '+game.scrap;
  $('missionLine').textContent='0'+game.level+' / '+levelData().title+' · '+(game.level===2?'⇆ КОНВЕЄРИ · ПАВУТИНА':levelData().goal);
  $('tutorialStatus').textContent=game.webSlow>0?'🕸 ПАВУТИНА '+game.webSlow.toFixed(1)+'s':tutorialProtected()?'🛡 ЗАХИСТ ВІД СМЕРТІ':'⚔ БОЙОВИЙ РЕЖИМ';
- $('coilStatus').textContent='↺ COIL '+(game.scatterTimer>0?'НЕАКТИВНИЙ ПІД ЧАС SCATTER':game.coilTimer>0?('ГОТОВНІСТЬ '+game.coilTimer.toFixed(1)+'s'):(game.coilArmed?'ГОТОВИЙ':'ВІДВЕДИ ГОЛОВУ ВІД ТІЛА'))+' · УБИТО ПЕТЛЯМИ: '+game.coilVictims;
+ $('coilStatus').textContent='↺ COIL '+(bodyCount()<COIL_UNLOCK?('ЗАБЛОКОВАНО · '+bodyCount()+'/'+COIL_UNLOCK+' СЕГМЕНТІВ'):game.scatterTimer>0?'НЕАКТИВНИЙ ПІД ЧАС SCATTER':game.coilTimer>0?('ГОТОВНІСТЬ '+game.coilTimer.toFixed(1)+'s'):(game.coilArmed?'ГОТОВИЙ':'ВІДВЕДИ ГОЛОВУ ВІД ТІЛА'))+' · УБИТО ПЕТЛЯМИ: '+game.coilVictims;
  $('runeStatus').textContent='РУНА: '+(game.runeFirst?(RUNE_SYMBOL[game.runeFirst]+' · ЗНАЙДИ ПАРУ'):'—  ◆ ● ✧');
  $('powerStatus').textContent=game.fireworkTimer>0?'✦ FIREWORK '+game.fireworkTimer.toFixed(1)+'с':game.scatterTimer>0?'✧ SCATTER '+game.scatterTimer.toFixed(1)+'с':game.tailTrap?'● ХВІСТ-БОМБА '+game.tailTrap.t.toFixed(1)+'с':'◆● FIRE · ◆✧ SCAT · ●✧ TAIL · ✧✧ CUT';
  $('tutorialStatus').style.color=tutorialProtected()?'#edf3d7':'#e0ac7b';
@@ -937,7 +1008,7 @@ function updateHud(){
  $('hpLabel').textContent=Math.ceil(clamp(game.hp,0,100));
  $('wavefill').style.width=clamp(game.t/waveDuration()*100,0,100)+'%';
  $('timerLabel').textContent=game.wave===3&&game.bossSpawned?'BOSS':Math.max(0,Math.ceil(waveDuration()-game.t))+'s';
- $('partsLabel').textContent='◈ '+game.modules.length+' PARTS';
+ $('partsLabel').textContent='▰ '+bodyCount()+' BODY · ⚙ '+game.modules.length;
  let b=$('boost');b.classList.toggle('disabled',game.boostCD>0);
  $('boostText').textContent=game.boostCD>0?Math.ceil(game.boostCD)+'s':game.boost>0?'ACTIVE':'BOOST';
 }
@@ -949,7 +1020,7 @@ function finish(won){
  $('levelClear').classList.add('hidden');$('workshop').classList.add('hidden');
  $('resultTag').textContent=won?'ALL THREE LEVELS COMPLETE':'RUN COMPLETE';
  $('resultTitle').textContent=won?'FACTORY CONQUERED!':'FACTORY DOWN';
- $('resultDesc').textContent=won?'Ти замикав смертоносні петлі, зберіг змійку та переміг павука-черепа!':'Ядро знищене. Твоя конструкція майже перемогла. Спробуй іншу збірку.';
+ $('resultDesc').textContent=won?'Ти виростив змійку, замикав петлі й переміг павука-черепа!':'Ядро знищене. Твоя конструкція майже перемогла. Спробуй іншу збірку.';
  $('scoreResult').textContent=game.score;$('killsResult').textContent=game.kills;
  $('waveResult').textContent=game.level+' / '+game.wave;
  $('buildResult').textContent=game.modules.length;
@@ -966,10 +1037,10 @@ function completeWave(){
    $('rewardBadge').textContent='★ НОВЕ ПОКРАЩЕННЯ';
    $('rewardModuleName').textContent=KINDS[levelData().reward].name;
    $('rewardDescription').textContent=levelData().info;
-   $('rewardExtra').textContent='+'+levelData().rewardMetal+' МЕТАЛУ · +1 МОДУЛЬ';
+   $('rewardExtra').textContent='+'+levelData().rewardMetal+' МЕТАЛУ · +1 МОДУЛЬ · +2 КОРПУС';
    $('levelClear').classList.remove('hidden');updateHud();return;
  }
- game.waveComplete=true;game.scrap+=7;
+ game.waveComplete=true;game.scrap+=7;growBody(1,true);notify('▰ +1 СЕГМЕНТ ЗА ХВИЛЮ!');
  if(game.offers.length<10){game.offers.push({id:game.nextId++,kind:randomUnlockedKind(),level:1,rot:0})}
  openGarage(true);notify('ХВИЛЮ ПРОЙДЕНО · +7 МЕТАЛУ!')
 }
@@ -977,7 +1048,7 @@ function claimLevelReward(){
  if(game.mode!=='levelclear')return;
  const prev=levelData();game.scrap+=prev.rewardMetal;
  if(game.offers.length>=11){game.offers.shift();game.scrap+=5}game.offers.push({id:game.nextId++,kind:prev.reward,level:1,rot:0});
- game.score+=1000;game.level++;game.wave=1;game.waveComplete=true;game.clearRewardPending=true;
+ growBody(2,true);game.score+=1000;game.level++;game.wave=1;game.waveComplete=true;game.clearRewardPending=true;
  $('levelClear').classList.add('hidden');
  game.mode='play';openGarage(false);
  game.waveComplete=true;
@@ -1011,6 +1082,7 @@ function resetStage(){
  game.head={x:210,y:355,ang:-Math.PI/2};game.trail=[];
  for(let i=0;i<170;i++)game.trail.push({x:210,y:355+i*3});
  for(let i=0;i<9;i++)addPickup(R(48,374),R(176,665),i%3?'scrap':'part');
+ for(let i=0;i<3;i++)addPickup(R(68,352),R(202,620),'segment');
   for(const [type,x,y] of [['runeCrystal',244,325],['runeCoin',305,460],['runeAmulet',160,550]])addPickup(x+R(-22,22),y+R(-22,22),type);
  game.modules.forEach(m=>m.cooldown=0);
  game.waveComplete=false;game.clearRewardPending=false
@@ -1032,7 +1104,7 @@ if(!game.offers.length){offers.innerHTML='<div style="grid-column:1/-1;text-alig
 $('capacityLabel').textContent=capacity()+' / 20';$('offerCount').textContent=game.offers.length+' доступно';$('shopstat').textContent='⚙ МЕТАЛ '+game.scrap;let buy=$('buyModule');buy.disabled=game.scrap<10||game.offers.length>=11;buy.textContent=game.offers.length>=11?'▣ ІНВЕНТАР ПОВНИЙ':'⚙ СТВОРИТИ МОДУЛЬ · 10 МЕТАЛУ';renderBodyPreview()}
 function renderBodyPreview(){
  const el=$('bodyPreview'),out=moduleSlots(),slots=bodyCount();
- $('bodyLengthLabel').textContent=slots+' сегментів';el.innerHTML='';
+ $('bodyLengthLabel').textContent=slots+' сегментів · ЗБРОЯ '+game.modules.length+'/'+slots+' · COIL від '+COIL_UNLOCK;el.innerHTML='';
  const head=document.createElement('span');head.className='bodySlot headSlot';head.textContent='☠';head.title='Голова змійки';el.appendChild(head);
  for(let i=1;i<=slots;i++){const m=out.get(i),d=document.createElement('span');d.className='bodySlot'+(m?' armed':'');d.title=m?KINDS[m.kind].name+' (L'+m.level+') · позиція '+i:'Каркас · сегмент '+i;
   if(m){d.innerHTML=iconHtml(m.kind)}else d.textContent='▪';el.appendChild(d)}
@@ -1041,11 +1113,11 @@ function setHint(str,err=false){let el=$('hint');el.textContent=str;el.style.bor
 function install(item,x,y){const shape=rotateShape(KINDS[item.kind].shape,item.rot||0);let cells=shape.map(([dx,dy])=>[x+dx,y+dy]);if(cells.some(([a,b])=>a<0||a>=COLS||b<0||b>=ROWS)){setHint('Не вміщається. Спробуй повернути деталь кнопкою ↻.',true);return false}if(cells.some(([a,b])=>gridOwner(a,b))){setHint('Ці клітинки зайняті. Постав деталь на порожнє місце.',true);return false}
 // Adjacent same-type parts of same level automatically merge: use placed part, no extra space taken.
 let neighbor=game.modules.find(m=>m.kind===item.kind&&m.level===item.level&&m.level<3&&occupiedCells(m).some(([a,b])=>cells.some(([c,d])=>Math.abs(c-a)+Math.abs(d-b)===1)));
-if(neighbor){neighbor.level++;game.offers=game.offers.filter(o=>o.id!==item.id);game.score+=120*neighbor.level;setHint('⚡ MERGE! '+KINDS[item.kind].name+' рівня '+neighbor.level+'. Модулі стали потужнішими!');burst(game.head.x,game.head.y,KINDS[item.kind].color,20,115)}else{game.modules.push({...item,x,y,cooldown:0});game.offers=game.offers.filter(o=>o.id!==item.id);setHint('✓ '+KINDS[item.kind].name+' встановлено. Змійка отримала новий сегмент!')}selected=null;renderGarage();return true}
+if(neighbor){neighbor.level++;game.offers=game.offers.filter(o=>o.id!==item.id);game.score+=120*neighbor.level;setHint('⚡ MERGE! '+KINDS[item.kind].name+' рівня '+neighbor.level+'. Модулі стали потужнішими!');burst(game.head.x,game.head.y,KINDS[item.kind].color,20,115)}else{if(game.modules.length>=bodyCount()){setHint('ЗМІЙКА ЗАКОРОТКА! Збери зелені сегменти корпусу на арені.',true);return false}game.modules.push({...item,x,y,cooldown:0});game.offers=game.offers.filter(o=>o.id!==item.id);setHint('✓ '+KINDS[item.kind].name+' встановлено. Змійка отримала новий сегмент!')}selected=null;renderGarage();return true}
 function boardTap(x,y){if(selected?.source==='offer'){let item=game.offers.find(o=>o.id===selected.id);if(item)install(item,x,y);return}let owner=gridOwner(x,y);if(owner){selected={source:'installed',id:owner.id};setHint(KINDS[owner.kind].name+' · рівень '+owner.level+'. Можна зняти та переставити.');renderGarage()}else if(selected?.source==='installed'){selected=null;renderGarage()}}
 function rotateSelected(){if(selected?.source!=='offer'){setHint('Спочатку обери деталь із нижнього списку.',true);return}let m=game.offers.find(o=>o.id===selected.id);if(!m)return;m.rot=(m.rot+1)%4;let s=rotateShape(KINDS[m.kind].shape,m.rot),w=Math.max(...s.map(a=>a[0]))+1,h=Math.max(...s.map(a=>a[1]))+1;setHint('↻ Повернуто: '+w+'×'+h+'. Торкнись клітинки для встановлення.');renderGarage()}
 function removeSelected(){if(selected?.source!=='installed'){setHint('Обери встановлений модуль на сітці, щоб зняти його.',true);return}let i=game.modules.findIndex(m=>m.id===selected.id);if(i<0)return;if(game.modules.length<2){setHint('Не можна зняти останній бойовий модуль.',true);return}let m=game.modules.splice(i,1)[0];game.offers.push({...m});selected={source:'offer',id:m.id};setHint('Модуль знято. Обери нове місце для розміщення.');renderGarage()}
-function autoBuild(){let done=0;for(const o of [...game.offers]){let fitted=false;for(let rot=0;rot<4&&!fitted;rot++){o.rot=rot;for(let y=0;y<ROWS&&!fitted;y++)for(let x=0;x<COLS&&!fitted;x++){let ss=rotateShape(KINDS[o.kind].shape,rot).map(([a,b])=>[x+a,y+b]);if(ss.some(([a,b])=>a>=COLS||b>=ROWS||gridOwner(a,b)))continue;install(o,x,y);fitted=true;done++}}}selected=null;renderGarage();setHint(done?'⚡ Авто-збірка: встановлено або об’єднано '+done+' деталей.':'Усі місця зайняті. Зніми або об’єднай деякі модулі.',!done)}
+function autoBuild(){let done=0;for(const o of [...game.offers]){let fitted=false;for(let rot=0;rot<4&&!fitted;rot++){o.rot=rot;for(let y=0;y<ROWS&&!fitted;y++)for(let x=0;x<COLS&&!fitted;x++){let ss=rotateShape(KINDS[o.kind].shape,rot).map(([a,b])=>[x+a,y+b]);if(ss.some(([a,b])=>a>=COLS||b>=ROWS||gridOwner(a,b)))continue;if(install(o,x,y)){fitted=true;done++}}}}selected=null;renderGarage();setHint(done?'⚡ Авто-збірка: встановлено або об’єднано '+done+' деталей.':'Усі місця зайняті. Зніми або об’єднай деякі модулі.',!done)}
 function buyRandomModule(){
  if(game.mode!=='garage')return;
  if(game.scrap<10){setHint('Потрібно 10 металу. Збирай світлі кристали ◆ на арені.',true);return}
@@ -1070,6 +1142,7 @@ function practice(which){
   {id:4,kind:'shield',level:1,x:0,y:2,rot:0,cooldown:0},
   {id:5,kind:which==='web'?'magnet':'tesla',level:1,x:3,y:2,rot:0,cooldown:0}
  ];
+ game.bodyLength=which==='web'?12:17;game.coilUnlocked=game.bodyLength>=COIL_UNLOCK;
  if(which==='web'){
   const e=createEnemy('weaver',clamp(game.head.x+127,35,W-35),game.head.y+20);e.webClock=.9;
  }else{game.offers.push({id:91,kind:'tesla',level:1,rot:0})}
@@ -1079,13 +1152,13 @@ function practice(which){
 $('start').addEventListener('click',start);$('practiceWeb').addEventListener('click',()=>practice('web'));$('practiceBoss').addEventListener('click',()=>practice('boss'));$('restart').addEventListener('click',start);$('boost').addEventListener('pointerdown',e=>{e.stopPropagation();boost()});$('garageTop').addEventListener('click',()=>openGarage(false));$('launch').addEventListener('click',nextWave);$('rotate').addEventListener('click',rotateSelected);$('remove').addEventListener('click',removeSelected);$('autobuild').addEventListener('click',autoBuild);$('buyModule').addEventListener('click',buyRandomModule);$('claimReward').addEventListener('click',claimLevelReward);
 function loop(ts){if(!last)last=ts;let dt=clamp((ts-last)/1000,0,.035);last=ts;let time=ts/1000;if(game.mode==='play')step(dt);drawWorld(time);screenCtx.imageSmoothingEnabled=false;screenCtx.drawImage(artCanvas,0,0,cv.width,cv.height);requestAnimationFrame(loop)}
 window.addEventListener('resize',resize);setup();resize();requestAnimationFrame(loop);
-window.SnakeFactoryArtDebug={version:'v1.2',assetCount:Object.keys(ART_IMG).length,images:()=>Object.fromEntries(Object.entries(ART_IMG).map(([key,im])=>[key,!!im.naturalWidth])),sampleFX:(kind,x=210,y=440)=>visualFX(kind,x,y)};
-window.SnakeFactoryDebug={getState:()=>({mode:game.mode,level:game.level,wave:game.wave,hp:game.hp,scrap:game.scrap,score:game.score,kills:game.kills,modules:game.modules.map(m=>({...m})),offers:game.offers.map(o=>o.kind),enemies:game.enemies.map(e=>e.kind),enemyDetails:game.enemies.map(e=>({kind:e.kind,x:e.x,y:e.y,hp:e.hp,isBoss:e.isBoss})),tailPosition:sampleTrail(bodyCount()*BODY_STEP),shots:game.shots.length,elapsed:game.t,bossSpawned:game.bossSpawned,nearby:game.enemies.filter(e=>Math.hypot(e.x-game.head.x,e.y-game.head.y)<100).length,coilVictims:game.coilVictims,coilCount:game.coilCount,coilCooldown:game.coilTimer,bodySegments:bodyCount(),fireworkTimer:game.fireworkTimer,fireworkCount:game.fireworkCount,biteCount:game.biteCount,biteCooldown:game.biteCooldown,scatterTimer:game.scatterTimer,scatterCount:game.scatterCount,scatterShots:game.scatterShots,tailCount:game.tailCount,tailTrap:!!game.tailTrap,whipCount:game.whipCount,comboCount:game.powerComboCount,runeFirst:game.runeFirst,powerPickups:game.powerPickups,webSlow:game.webSlow,webShots:game.webShots.length,webCastCount:game.webCastCount,head:{...game.head}}),
-  triggerPower:(kind)=>triggerPower(kind,'debug'),getPickups:()=>game.pickups.map(p=>({x:p.x,y:p.y,type:p.type})),spawnAt:(kind,x,y)=>createEnemy(kind,x,y),spawnToken:(type,x=game.head.x+15,y=game.head.y-20)=>addPickup(x,y,type),eatSpider:()=>{let e=createEnemy('bug',game.head.x+Math.cos(game.head.ang)*23,game.head.y+Math.sin(game.head.ang)*23);return e.kind},
+window.SnakeFactoryArtDebug={version:'v1.3',assetCount:Object.keys(ART_IMG).length,images:()=>Object.fromEntries(Object.entries(ART_IMG).map(([key,im])=>[key,!!im.naturalWidth])),sampleFX:(kind,x=210,y=440)=>visualFX(kind,x,y)};
+window.SnakeFactoryDebug={getState:()=>({mode:game.mode,level:game.level,wave:game.wave,hp:game.hp,scrap:game.scrap,score:game.score,kills:game.kills,modules:game.modules.map(m=>({...m})),offers:game.offers.map(o=>o.kind),enemies:game.enemies.map(e=>e.kind),enemyDetails:game.enemies.map(e=>({kind:e.kind,x:e.x,y:e.y,hp:e.hp,isBoss:e.isBoss})),tailPosition:sampleTrail(bodyCount()*BODY_STEP),shots:game.shots.length,elapsed:game.t,bossSpawned:game.bossSpawned,nearby:game.enemies.filter(e=>Math.hypot(e.x-game.head.x,e.y-game.head.y)<100).length,coilVictims:game.coilVictims,coilCount:game.coilCount,coilCooldown:game.coilTimer,bodySegments:bodyCount(),bodyLength:game.bodyLength,bodyGrown:game.bodyGrown,bodyLost:game.bodyLost,modulesLost:game.modulesLost,modulesRecovered:game.modulesRecovered,coilUnlocked:bodyCount()>=COIL_UNLOCK,segmentDamageCD:game.segmentDamageCD,fireworkTimer:game.fireworkTimer,fireworkCount:game.fireworkCount,biteCount:game.biteCount,biteCooldown:game.biteCooldown,scatterTimer:game.scatterTimer,scatterCount:game.scatterCount,scatterShots:game.scatterShots,tailCount:game.tailCount,tailTrap:!!game.tailTrap,whipCount:game.whipCount,comboCount:game.powerComboCount,runeFirst:game.runeFirst,powerPickups:game.powerPickups,webSlow:game.webSlow,webShots:game.webShots.length,webCastCount:game.webCastCount,head:{...game.head}}),
+  grow:(n=1)=>growBody(n),tear:(slot=3)=>{game.segmentDamageCD=0;return shearSegment(slot)},triggerPower:(kind)=>triggerPower(kind,'debug'),getPickups:()=>game.pickups.map(p=>({x:p.x,y:p.y,type:p.type,module:p.module?{kind:p.module.kind,level:p.module.level}:null})),spawnAt:(kind,x,y)=>createEnemy(kind,x,y),collectDropped:()=>{for(const p of game.pickups.filter(x=>x.type==='damagedModule')){p.x=game.head.x;p.y=game.head.y}return true},spawnToken:(type,x=game.head.x+15,y=game.head.y-20)=>addPickup(x,y,type),eatSpider:()=>{let e=createEnemy('bug',game.head.x+Math.cos(game.head.ang)*23,game.head.y+Math.sin(game.head.ang)*23);return e.kind},
   spawnWeaver:()=>createEnemy('weaver',clamp(game.head.x+120,45,W-45),clamp(game.head.y+30,150,H-80)),
   forceWeb:()=>applyWebSlow(3),
   // Test helper: install a deterministic closed ring around a single target.
-  testCoil:(kind='bug',count=1)=>{if(game.mode!=='play')return {error:'not playing'};game.coilTimer=0;game.coilArmed=true;const cx=210,cy=430,r=43;game.head={x:cx+r,y:cy,ang:-Math.PI/2};game.trail=[];for(let i=0;i<145;i++){const angle=i*2*Math.PI/135;game.trail.push({x:cx+r*Math.cos(angle),y:cy+r*Math.sin(angle)})}const targets=[];for(let i=0;i<count;i++)targets.push(createEnemy(kind,cx+(i-(count-1)/2)*11,cy,kind==='boss'));const old=game.coilVictims;const ok=checkCoil();return {ok,kills:game.coilVictims-old,targetsGone:targets.every(e=>!game.enemies.includes(e)),coilCount:game.coilCount}},skipWave:()=>{if(game.mode==='play'){if(game.wave===3){if(!game.bossSpawned)spawnBoss();game.boss.hp=0;for(let i=game.enemies.length-1;i>=0;i--){if(game.enemies[i].isBoss){let e=game.enemies.splice(i,1)[0];killEnemy(e);break}}}else game.t=waveDuration()+1}},openGarage:()=>openGarage(false),spawnBoss,boost,claimLevelReward,completeWave};
+  testCoil:(kind='bug',count=1)=>{if(game.mode!=='play')return {error:'not playing'};game.coilTimer=0;game.coilArmed=true;const cx=210,cy=430,r=Math.min(43,Math.max(29,(bodyCount()*BODY_STEP-22)/TAU));game.head={x:cx+r,y:cy,ang:-Math.PI/2};game.trail=[];for(let i=0;i<145;i++){const angle=i*2*Math.PI/135;game.trail.push({x:cx+r*Math.cos(angle),y:cy+r*Math.sin(angle)})}const targets=[];for(let i=0;i<count;i++)targets.push(createEnemy(kind,cx+(i-(count-1)/2)*11,cy,kind==='boss'));const old=game.coilVictims;const ok=checkCoil();return {ok,kills:game.coilVictims-old,targetsGone:targets.every(e=>!game.enemies.includes(e)),coilCount:game.coilCount}},skipWave:()=>{if(game.mode==='play'){if(game.wave===3){if(!game.bossSpawned)spawnBoss();game.boss.hp=0;for(let i=game.enemies.length-1;i>=0;i--){if(game.enemies[i].isBoss){let e=game.enemies.splice(i,1)[0];killEnemy(e);break}}}else game.t=waveDuration()+1}},openGarage:()=>openGarage(false),spawnBoss,boost,claimLevelReward,completeWave};
 })();
 </script>
 </body></html>
