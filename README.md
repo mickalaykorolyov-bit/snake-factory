@@ -108,3 +108,19 @@ The live page is a self-contained HTML5 game: no separate asset server is necess
 - **Safety:** start protection still applies in tutorial waves, and the minimum body is four segments. Existing BUILD, Merge, web slow, COIL, morph powers, three levels and bosses remain.
 
 The previous version is preserved at branch `backup/v12-before-body-growth`. The playable game remains a self-contained `index.html`; green chassis icons are presently drawn directly to the pixel-art canvas.
+
+## v1.4 — GRID MOVEMENT (experimental control mode)
+
+Snake movement is now **cell-by-cell**, like classic Snake, instead of free-angle steering.
+
+- Playable board: **16 columns × 24 rows**, cell centers spaced **24 internal pixels** apart, with a matching visible grid.
+- Four cardinal headings only (up, right, down, left). Direction changes happen instantly at the next tile boundary.
+- **Mobile:** swipe on the arena or use the visible four-button D-pad. **Desktop:** arrow keys / WASD.
+- As in classic Snake, a direct **180° reverse is disallowed**; use two 90° turns. You can queue up to two turns.
+- **Walls:** stop the snake until a valid turn is chosen; wall contact does not cost HP.
+- **BOOST, web slow, and ENGINE upgrades** affect the number of grid steps per second, not off-grid velocity.
+- **Level 2 conveyors:** accelerate movement in their direction or slow it against the flow; they no longer displace the player between cells.
+- The existing **COIL KILL** system uses the now-right-angled snake path, unlocked at 12 body segments.
+- All other combat and workshop systems (3 levels, BUILD, Merge, Firework, Scatter, Lizard Tail, Cut the Line, segment severing) remain in place.
+
+This is an experiment to compare play feel with v1.3. The previous free-motion build is preserved on branch `backup/v13-before-grid-movement`.
