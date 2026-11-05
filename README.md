@@ -1,5 +1,7 @@
 # SNAKE FACTORY — HTML5 playtest
 
+> **АКТИВНА ВЕРСІЯ: v1.3 — вільне плавне керування.** Експеримент v1.4 з рухом по клітинках відкладений після тестування. Його код збережено в гілці [`experiments/grid-v14`](../../tree/experiments/grid-v14). Головна гра на `main` знову має керування v1.3.
+
 **Snake Factory** — мобільна аркада, що поєднує **Snake + Inventory Tetris (BUILD) + Merge + Auto Combat**.
 
 Ця збірка — іграбельний тест інтеграції спрайтів Claude (`SNAKE_FACTORY_HANDOFF.zip`) із механіками Snake Factory v0.9.
@@ -111,7 +113,7 @@ The previous version is preserved at branch `backup/v12-before-body-growth`. The
 
 ## v1.4 — GRID MOVEMENT (experimental control mode)
 
-Snake movement is now **cell-by-cell**, like classic Snake, instead of free-angle steering.
+Experimental build (not active on `main`): snake movement is **cell-by-cell**, like classic Snake, instead of free-angle steering.
 
 - Playable board: **16 columns × 24 rows**, cell centers spaced **24 internal pixels** apart, with a matching visible grid.
 - Four cardinal headings only (up, right, down, left). Direction changes happen instantly at the next tile boundary.
