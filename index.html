@@ -250,7 +250,7 @@ html,body{background:#040915!important;color:#f2e7cf!important}
 <section id="menu" class="overlay"><div class="menucontent">
  <div class="eyebrow">THREE LEVEL CAMPAIGN / 1993</div><h1 class="logo">SNAKE<span>FACTORY</span></h1><div class="heroicon" aria-hidden="true"></div>
  <p class="sublogo">ТВОЄ ТІЛО — ЗБРОЯ! Оточуй ворогів петлею, збирай руни та перетворюй змійку просто під час битви.</p>
-  <div class="pickup-intro compactHelp"><div><strong>▰ РІСТ:</strong> збирай зелені сегменти з павуків. Починаєш із 6, COIL відкривається на 12.</div><div><strong>↺ COIL:</strong> замкни петлю довгою змійкою — вороги всередині гинуть миттєво.</div><div><strong>▰ ПРИМАНКА:</strong> натисни кнопку або E: віддай 1 сегмент, збери й зупини ворогів, потім оточи їх. Від 12 сегментів.</div><div><strong>✦ РУНИ:</strong> ◆ блакитний кристал, ● золота монета, ✧ фіолетовий амулет. Збери пару.</div><div><strong>☠ ПАЩА:</strong> з'їж малого павука головою — отримай FIREWORK на 4 секунди.</div><div><strong>⚙ BUILD:</strong> павуки-різаки можуть відривати модулі. Підбирай випалі деталі та став знову!</div></div>
+  <div class="pickup-intro compactHelp"><div><strong>▰ РІСТ:</strong> збирай зелені сегменти з павуків. Починаєш із 6, COIL відкривається на 12.</div><div><strong>↺ COIL:</strong> замкни петлю довгою змійкою — вороги всередині гинуть миттєво.</div><div><strong>▰ ПРИМАНКА:</strong> натисни кнопку або E: віддай 1 сегмент, збери й зупини ворогів, потім оточи їх. Від 13 сегментів (після втрати одного залишиться 12 для COIL).</div><div><strong>✦ РУНИ:</strong> ◆ блакитний кристал, ● золота монета, ✧ фіолетовий амулет. Збери пару.</div><div><strong>☠ ПАЩА:</strong> з'їж малого павука головою — отримай FIREWORK на 4 секунди.</div><div><strong>⚙ BUILD:</strong> павуки-різаки можуть відривати модулі. Підбирай випалі деталі та став знову!</div></div>
  <div class="runeRecipes" aria-label="Комбінації рун"><div><b>◆ + ●</b> FIREWORK · 4с шквал куль</div><div><b>◆ + ✧</b> SCATTER · сегменти-дрони</div><div><b>● + ✧</b> LIZARD · хвіст-приманка</div><div><b>✧ + ✧</b> CUT · удар батогом</div><div class="runeExtra">З'ЇЖ ПАВУКА ПАЩЕЮ → FIREWORK!</div></div><div class="pills"><span>↺ COIL KILL</span><span>◆ РУНИ</span><span>⚙ BUILD</span><span>✺ TRANSFORM</span></div>
  <button class="primary" id="start">ПОЧАТИ ГРУ ▶</button><div class="practiceRow"><button type="button" id="practiceWeb">🕸 ТЕСТ ПАВУТИНИ · L2</button><button type="button" id="practiceBoss">☠ ТЕСТ БОСА · L3</button></div><p class="menufoot">Один палець • 3 рівні × 3 хвилі • Майстерня<br>ПК: WASD / стрілки • Пробіл — прискорення • E — приманка</p>
 </div></section>
@@ -1014,13 +1014,13 @@ function updateHud(){
  $('wavefill').style.width=clamp(game.t/waveDuration()*100,0,100)+'%';
  $('timerLabel').textContent=game.wave===3&&game.bossSpawned?'BOSS':Math.max(0,Math.ceil(waveDuration()-game.t))+'s';
  $('partsLabel').textContent='▰ '+bodyCount()+' BODY · ⚙ '+game.modules.length;
- let bait=$('bait');bait.classList.toggle('disabled',game.baitCD>0||!!game.bait||bodyCount()<COIL_UNLOCK||game.scatterTimer>0);$('baitText').textContent=game.bait?'ПРИМАНКА '+Math.ceil(game.bait.t)+'с':bodyCount()<COIL_UNLOCK?'ВІД 12 ▰':game.baitCD>0?Math.ceil(game.baitCD)+'с':'ПРИМАНКА';
+ let bait=$('bait');bait.classList.toggle('disabled',game.baitCD>0||!!game.bait||bodyCount()<=COIL_UNLOCK||game.scatterTimer>0);$('baitText').textContent=game.bait?'ПРИМАНКА '+Math.ceil(game.bait.t)+'с':bodyCount()<=COIL_UNLOCK?'ВІД 13 ▰':game.baitCD>0?Math.ceil(game.baitCD)+'с':'ПРИМАНКА';
  let b=$('boost');b.classList.toggle('disabled',game.boostCD>0);
  $('boostText').textContent=game.boostCD>0?Math.ceil(game.boostCD)+'s':game.boost>0?'ACTIVE':'BOOST';
 }
 
 function dropBait(){
- if(game.mode!=='play'||game.baitCD>0||game.bait||bodyCount()<COIL_UNLOCK||game.bodyLength<=MIN_BODY+1||game.scatterTimer>0)return false;
+ if(game.mode!=='play'||game.baitCD>0||game.bait||bodyCount()<=COIL_UNLOCK||game.bodyLength<=MIN_BODY+1||game.scatterTimer>0)return false;
  const pos=sampleTrail(Math.max(2,bodyCount()-1)*BODY_STEP);
  game.bodyLength--;game.bait={x:clamp(pos.x,35,W-35),y:clamp(pos.y,155,H-85),t:7.5,max:7.5};game.baitCD=11;
  burst(pos.x,pos.y,'#72ffc3',16,90);notify('▰ ПРИМАНКА! ВОРОГИ ЗБІГАЮТЬСЯ · ЗАМИКАЙ ПЕТЛЮ!');updateHud();return true;
