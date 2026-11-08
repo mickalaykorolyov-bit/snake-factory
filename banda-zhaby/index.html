@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-<title>Банда Жаби — Foxworth Convoy v1.0</title>
+<title>Банда Жаби — Two-Level Progression v1.1</title>
 <style>
 :root{color-scheme:dark;--gold:#f5c96b;--ink:#0d1825}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#08111b;color:#f6eddf;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;overflow-x:hidden}
@@ -135,7 +135,7 @@ function drawGangSprite(kind,x,y,index=0,dir=0,run=false){
  c.restore();return true;
 }
 
-const MOVE_STEP=.300, BOOST_FACTOR=1.5, BOOST_DURATION=5, NIGHT_SECONDS=80;
+const MOVE_STEP=.300, BOOST_FACTOR=1.5, BOOST_DURATION=5, NIGHT_SECONDS=150, NIGHT_2_SECONDS=180;
 const GLOW_FACTOR=(1/1.5);
 function currentMoveStep(){return G&&G.speedBoost>0?MOVE_STEP/BOOST_FACTOR:MOVE_STEP;}
 
@@ -308,7 +308,7 @@ const center=(seg)=>({x:BX+(seg.x+.5)*S,y:BY+(seg.y+.5)*S});
 const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
 const rgba=(hex,a)=>{const h=hex.replace('#','');let n=parseInt(h,16);return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`};
 const ALIBI_TYPES={
- passport:{label:'ПАСПОРТ КОРОЛЕВИ',short:'ПАСПОРТ',desc:'Сова замовкає на 2–4 с у другій фазі'},
+ passport:{label:'ПАСПОРТ КОРОЛЕВИ',short:'ПАСПОРТ',desc:'Лис припиняє атаки на 2–4 с у другій фазі'},
  clock:{label:'ГОДИННИК АЛІБІ',short:'ГОДИННИК',desc:'Додає до 12 с судового часу'},
  prints:{label:'ВІДБИТКИ СОВИ',short:'ВІДБИТКИ',desc:'Прибирає до 4 печаток на початку'}
 };
@@ -318,7 +318,7 @@ const CASE_TROPHIES={owl_verdict:{label:'ПІДРОБЛЕНИЙ ВИРОК СО�
 function loadCaseTrophies(){try{const x=JSON.parse(localStorage.getItem('banda_zhaby_trophies_v1')||'[]');return Array.isArray(x)?x.filter(k=>CASE_TROPHIES[k]):[];}catch(_){return [];}}
 function unlockCaseTrophy(key){if(!CASE_TROPHIES[key]||G.trophies.includes(key))return;G.trophies.push(key);try{localStorage.setItem('banda_zhaby_trophies_v1',JSON.stringify(G.trophies));}catch(_){ }popup('НОВИЙ ТРОФЕЙ!',BX+BW/2,BY+7*S,'#ffdfa0',16);}
 
-function fresh(){G={phase:'intro',t:0,stageTime:65,dir:2,queued:null,moveTimer:0,
+function fresh(){const retainedTrophies=G?.trophies?.slice()||[];G={phase:'intro',t:0,stageTime:65,trophyCase:0,dir:2,queued:null,moveTimer:0,
  animFrom:[],animTo:[],actors:[{x:6,y:12,kind:'frog'},{x:7,y:12,kind:'weasel'},{x:8,y:12,kind:'badger'},{x:9,y:12,kind:'crow'},{x:10,y:12,kind:'crow'}],
  recruits:[],enemies:[],balls:[],relays:[],fx:[],obstacles:[],evidence:4,stolen:0,shield:0,outbound:0,heat:0,
  judge:174,judgeMax:174,judgeshields:9,judgeStage:1,bossInvuln:0,stageTransition:0,stageHits:[0,0,0],score:0,arrests:0,intercepts:0,combo:0,kills:0,
@@ -333,7 +333,7 @@ function fresh(){G={phase:'intro',t:0,stageTime:65,dir:2,queued:null,moveTimer:0
  prisoners:[],prisonerSeq:0,lostPrisoners:0,escortDelay:4.0,escortsCaught:0,lastStand:false,rescueTimer:0,rescueWindow:10,courtRescue:false,
  courtMachine:2,bulletReturned:0,nightComplete:false,stageAnnouncement:0,caseNum:1,cycle:1,selectedAlibi:null,archive:loadAlibiCollection(),alibiFragments:0,
  fakeFragments:[],fakeCargo:null,alibiUsed:false,sealPanelsOn:false,sealTimer:4,
- night2Auditors:0,appealShots:0,previousCourtScore:0,trophies:loadCaseTrophies(),convoyVehicles:[],convoyEscapes:0,convoyReleases:0,convoyShotCD:3.3,mechanicHealCD:1.1,courtMovers:[],courtMoverPhase:0,foxShieldHint:0};recruit('opossum');}
+ night2Auditors:0,appealShots:0,previousCourtScore:0,trophies:[...new Set([...loadCaseTrophies(),...retainedTrophies])],convoyVehicles:[],convoyEscapes:0,convoyReleases:0,convoyShotCD:3.3,mechanicHealCD:1.1,courtMovers:[],courtMoverPhase:0,foxShieldHint:0};recruit('opossum');}
 function createObstacle(x,y,w,h,material,tag=''){const HP={wood:3,metal:999,rubber:999,glass:1,paper:4,barrel:2};const hp=material==='metal'&&/^(locker|safe)/.test(tag)?24:(HP[material]||3);return {x,y,w,h,material,hp,maxHp:hp,tag};}
 // Five deliberate ricochet objects; open center for snake formations and raids.
 function nightObstacles(){return [
@@ -591,7 +591,7 @@ function triggerSecondCourtAlibi(){
  if(G.selectedAlibi==='passport'&&G.judgeStage>=2){
   G.owlFrozen=Math.max(G.owlFrozen,1+n);G.alibiUsed=true;
   popup('КОРОЛІВСЬКА НЕДОТОРКАННІСТЬ!',p.x,p.y-39,'#ffdf9f',11);
-  alert('ПАСПОРТ: СОВА ОНІМІЛА!');spawnVFX('frog_launch_flash',p.x,p.y,{scale:1.2});
+  alert('ПАСПОРТ: ЛИС ВТРАЧАЄ ДАР МОВИ!');spawnVFX('frog_launch_flash',p.x,p.y,{scale:1.2});
  }else if(G.selectedAlibi==='clock'&&G.t<120){
   G.t+=n*4;G.alibiUsed=true;
   popup(`АЛІБІ: +${n*4} СЕКУНД`,p.x,p.y-39,'#b9efff',12);
@@ -729,7 +729,7 @@ function collectLoot(head){
 function setPhase(p){resetCombatVFX();NEW_WEAPON_EVENTS.length=0;G.phase=p;G.t=0;G.balls=[];G.relays=[];G.enemies=[];G.fx=[];G.alert='';G.moveTimer=0;G.slow=0;G.warning=null;
  G.lightning=null;G.lightningDelay=3.8;G.speedBoost=0;G.mixer=null;G.mixerDelay=p==='court'?3.2:16;G.mixerFlash=0;G.hazards=[];G.weaponArcs=[];G.owlFrozen=0;G.catFrozen=0;G.catFreezeX=null;G.weaponRange=false;G.prisoners=[];G.lastStand=false;G.rescueTimer=0;G.courtRescue=false;
  if(p==='night'){G.escortDelay=4;G.spotlightLock=0;G.spotlightMarked=null;
- G.stageTime=G.cycle===2?128:NIGHT_SECONDS;G.t=G.stageTime;
+ G.stageTime=G.cycle===2?NIGHT_2_SECONDS:NIGHT_SECONDS;G.t=G.stageTime;
  G.spawnEnemy=2.6;G.spawnRecruit=3.5;
  G.obstacles=G.cycle===2?nightTwoObstacles():nightObstacles();G.turrets=G.cycle===2?[]:spawnTurrets();
  if(G.cycle===2)for(const t of G.turrets){t.hp+=5;t.maxHp+=5;t.cooldown*=.91;}
@@ -997,7 +997,8 @@ function spawnEscort(){
  for(const q of [{x:p.x+105,y:p.y-30},{x:p.x-105,y:p.y-30},{x:p.x+80,y:p.y+55},{x:p.x-80,y:p.y+55}]){
   if(q.x>BX+12&&q.x<BX+BW-12&&q.y>BY+10&&q.y<BY+BH-12){pos=q;break;}
  }
- const exit={x:pos.x<BX+BW/2?BX+10:BX+BW-10,y:BY+10}; G.enemies.push({x:pos.x,y:pos.y,gate:exit,carrying:false,prisonerKind:null,
+ const exit={x:pos.x<BX+BW/2?BX+10:BX+BW-10,y:BY+10};
+ G.enemies.push({x:pos.x,y:pos.y,gate:exit,carrying:false,prisonerKind:null,
   escortTarget:pr.id,spd:30,shot:99,hp:3,maxHp:3,kind:'escort'});
  popup('КОНВОЇР! ВРЯТУЙ КЛІТКУ',p.x,p.y-25,'#ffd9ab',10);
 }
@@ -1419,8 +1420,8 @@ function updateBall(b,dt){
    }
    spawnVFX(b.super?'heavy_explosion':'small_explosion',owl.x,owl.y,{scale:b.super?1.05:.73,priority:b.super?1:0});if(b.weapon==='rocket')newWeaponImpactVFX(b,owl.x,owl.y,.95);b.hitOwl=1;b.vy=Math.abs(b.vy);b.vx+=rand(-45,45);b.reboundReady=true;G.shake=Math.max(G.shake,.16);sfx(170,.16,'square',.032);
    if(G.judge<=0){
-    if(G.cycle===1){unlockCaseTrophy('owl_verdict');G.previousCourtScore=G.score;G.won=false;setPhase('alibi');}
-    else{unlockCaseTrophy('invisible_witness');G.won=true;setPhase('verdict');}
+    if(G.cycle===1){unlockCaseTrophy('owl_verdict');G.previousCourtScore=G.score;G.won=false;setPhase('trophy');G.trophyCase=1;}
+    else{unlockCaseTrophy('invisible_witness');G.won=true;setPhase('trophy');G.trophyCase=2;}
     return false;
    }
   }
@@ -1514,7 +1515,7 @@ function step(dt){if(G.phase!=='night'&&G.phase!=='court'){G.fx=G.fx.filter(f=>(
   checkBandState();
  }
  for(let i=G.balls.length-1;i>=0;i--){if(!updateBall(G.balls[i],dt))G.balls.splice(i,1);if(G.phase==='verdict')break;}
- if(G.phase==='verdict')return;
+ if(G.phase!=='night'&&G.phase!=='court')return;
  for(let i=G.relays.length-1;i>=0;i--){G.relays[i].elapsed+=dt;if(G.relays[i].elapsed>=G.relays[i].duration){shootRelay(G.relays[i]);G.relays.splice(i,1);}}
  G.fx=G.fx.filter(f=>(f.life-=dt)>0);
  if(G.t<=0){if(G.phase==='night'){G.evidence=Math.max(0,G.evidence-G.outbound);G.stolen=4-G.evidence;G.outbound=0;G.lostPrisoners+=G.prisoners.length+G.enemies.filter(e=>e.prisonerKind).length;setPhase('dossier')}
@@ -1591,10 +1592,11 @@ function paintRaid(){
   rr(95,554,230,21,5,'#654d2d','#e9c37a');text('ДОСЬЄ НА ХВОСТІ → У СХОВОК',210,565,10,'#fff1b9','center','system-ui',800)}
 }
 
+function formatStageTime(value){const s=Math.max(0,Math.ceil(value));return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;}
 function paintHud(){
  rr(14,10,392,87,11,'#142536da','#708194');text('БАНДА ЖАБИ',28,29,18,'#efd9ab','left','Georgia',700);
- text(G.phase==='court'?`СУД ${G.cycle}/2 · ${G.cycle===2?'ЛИС ФОКСВОРТ':'СОВА'} · ФАЗА ${G.judgeStage}/3`:`НІЧ ${G.cycle}/2 · ${G.cycle===2?'ПОГРАБУВАННЯ КОНВОЮ':'ПОГРАБУВАННЯ'}`,28,50,10,'#96b9bb','left','system-ui',750);
- const active=G.phase==='night'||G.phase==='court';text(active?`${Math.max(0,Math.ceil(G.t))} с`:'—',391,31,21,'#f6d27b','right','system-ui',750);
+ text(G.phase==='court'?`СУД ${G.cycle}/2 · ${G.cycle===2?'ЛИС ФОКСВОРТ':'СОВА'} · ФАЗА ${G.judgeStage}/3`:`НІЧ ${G.cycle}/2 · ${G.cycle===2?'КОНВОЙ І СВІДЧЕННЯ':'ВИКРАДЕННЯ ДОКАЗІВ'}`,28,50,10,'#96b9bb','left','system-ui',750);
+ const active=G.phase==='night'||G.phase==='court';text(active?formatStageTime(G.t):'—',391,31,21,'#f6d27b','right','system-ui',750);
  text(`БАНДА ${G.actors.length} · КЛІТКИ ${G.prisoners.length}${G.phase==='night'&&G.enemies.some(e=>e.kind==='escort')?' · КОНВОЙ':''}`,391,50,G.phase==='night'&&G.enemies.some(e=>e.kind==='escort')?9:10,G.lastStand?'#ffd89b':'#d5d1bf','right','system-ui',700);
  text(G.cycle===2&&G.phase==='night'?`СВІДЧЕННЯ ${G.alibiFragments}/3 · ЗАМКИ ${G.convoyVehicles?.[0]?.locks??3}`:`ДОКАЗИ ${G.evidence}/4`,28,78,12,G.evidence<2?'#fa9184':'#ebd9b7','left','system-ui',700);
  text(G.phase==='court'?`${G.cycle===2?'ЛИС':'СОВА'} ${Math.ceil(G.judge)}/${G.judgeMax} · ПЕЧАТКИ ${G.judgeshields}`:`ТРИВОГА ${G.heat} · ЗЛОДІЇ ${G.outbound}`,391,78,10,'#b7c9c5','right','system-ui',650);
@@ -1876,9 +1878,115 @@ function paintFooter(){
 }
 function overlay(title,lines,button,subtitle){c.fillStyle='rgba(5,11,18,.82)';c.fillRect(0,0,W,H);rr(27,183,366,330,15,'#192837','#84704d');text(`✦   СПРАВА №00${G.cycle}   ✦`,W/2,217,11,'#d0b17c','center','system-ui',700);text(title,W/2,267,26,'#f5d9a0','center','Georgia',700);let y=313;for(const line of lines){text(line,W/2,y,14,'#e7e7db','center');y+=28}
  if(subtitle)text(subtitle,W/2,443,11,'#9ec0bf','center');rr(79,457,262,43,8,'#b89a5c','#f7d495');text(button,W/2,479,14,'#182631','center','system-ui',850)}
+function caseStepIndex(){
+ if(G.phase==='intro'||(G.phase==='night'&&G.cycle===1))return 0;
+ if(G.cycle===1&&['dossier','court'].includes(G.phase))return 1;
+ if(G.phase==='trophy'&&G.trophyCase===1)return 2;
+ if(G.phase==='case2_intro'||(G.phase==='night'&&G.cycle===2))return 3;
+ if(G.cycle===2&&['dossier','court'].includes(G.phase))return 4;
+ return 5;
+}
+function paintCaseProgress(y=104){
+ const labels=['НІЧ I','СУД I','ТРОФЕЙ','НІЧ II','СУД II','ТРОФЕЙ'];
+ const active=caseStepIndex(),x0=43,step=67;
+ c.save();c.lineCap='round';c.lineWidth=3;
+ c.strokeStyle='#4c5d60';c.beginPath();c.moveTo(x0,y);c.lineTo(x0+step*5,y);c.stroke();
+ c.strokeStyle='#b7d393';c.beginPath();c.moveTo(x0,y);c.lineTo(x0+step*active,y);c.stroke();
+ for(let i=0;i<labels.length;i++){
+  const x=x0+i*step,done=i<active,here=i===active;
+  circle(x,y,here?11:9,here?'#ead395':done?'#83a995':'#263c4a',here?'#fff0bc':'#7b8e95');
+  text(done?'✓':String(i+1),x,y,here?10:9,here?'#182833':done?'#12372d':'#aebac0','center','system-ui',850);
+  text(labels[i],x,y+23,8,here?'#ffe2a5':done?'#c3daca':'#7c929c','center','system-ui',800);
+ }
+ c.restore();
+}
+function paintTrophyMilestone(){
+ const which=G.trophyCase||G.cycle,first=which===1;
+ c.save();c.fillStyle='#07111bea';c.fillRect(0,0,W,H);
+ const glow=c.createRadialGradient(210,320,16,210,320,310);glow.addColorStop(0,first?'#52412f':'#36324e');glow.addColorStop(1,'#08111b');c.fillStyle=glow;c.fillRect(0,0,W,H);
+ text(`СПРАВА №00${which} ЗАКРИТА`,210,45,13,'#a9c4c0','center','system-ui',900);
+ paintCaseProgress(92);
+ text(first?'СОВУ ПЕРЕМОЖЕНО!':'ЛИСА ПЕРЕМОЖЕНО!',210,162,24,'#f8daa3','center','Georgia',800);
+ text('НОВИЙ ЕКСПОНАТ У КОЛЕКЦІЇ',210,193,11,'#d9b990','center','system-ui',850);
+ // Physically drawn exhibit rather than only the name of a trophy.
+ c.shadowColor=first?'#e3bb72':'#a5b6f0';c.shadowBlur=21;
+ rr(105,228,210,202,23,'#182c3c','#e4c48e');c.shadowBlur=0;
+ rr(119,242,182,175,17,'#233949','#91b5c0');
+ c.fillStyle='#7b9aab18';c.fillRect(126,250,168,155);
+ if(first){
+  rr(146,264,128,120,6,'#d5b47c','#fff0bd');
+  rr(156,275,108,101,4,'#e8d19b','#956940');
+  text('COURT',210,300,15,'#5d4237','center','Georgia',900);
+  text('NOT GUILTY',210,332,13,'#853e3f','center','Georgia',900);
+  text('§',210,360,25,'#74522b','center','Georgia',900);
+  circle(267,381,17,'#b94d43','#f6bc78');text('✓',267,381,18,'#fff0cb','center','system-ui',850);
+ }else{
+  // Floating monocle and tie in a jar: the witness itself is invisible.
+  c.strokeStyle='#f9d889';c.lineWidth=5;c.beginPath();c.arc(202,306,35,0,Math.PI*2);c.stroke();
+  c.strokeStyle='#d6bc7b';c.lineWidth=2;c.beginPath();c.moveTo(233,327);c.quadraticCurveTo(260,362,235,385);c.stroke();
+  c.fillStyle='#ac587a';c.beginPath();c.moveTo(192,356);c.lineTo(210,356);c.lineTo(214,369);c.lineTo(203,400);c.lineTo(191,369);c.closePath();c.fill();
+  rr(157,263,106,24,3,'#e4cb9a','#f1e1bf');text('WITNESS #0',210,275,11,'#4c3c3a','center','system-ui',850);
+ }
+ c.strokeStyle='#cce7ee78';c.lineWidth=4;c.beginPath();c.moveTo(130,256);c.lineTo(130,382);c.stroke();
+ text(first?'ПІДРОБЛЕНИЙ ВИРОК СОВИ':'СВІДОК №0',210,465,first?18:25,'#fff0bc','center','Georgia',850);
+ text(first?'Печатка «НЕ ВИНЕН»':'I SAW NOTHING',210,494,13,'#bbd5cd','center','system-ui',750);
+ text(`БЮРО АЛІБІ · ${G.trophies.length}/2 ЕКСПОНАТИ`,210,535,12,'#b0cabe','center','system-ui',750);
+ rr(49,583,322,57,9,'#715538','#f1d099');
+ text(first?'ДАЛІ — СПРАВА №002':'ПЕРЕГЛЯНУТИ КОЛЕКЦІЮ',210,612,14,'#fff1cf','center','system-ui',900);
+ text(first?'НОВА НІЧ · НОВИЙ БОС · НОВИЙ ТРОФЕЙ':'ОБИДВА РІВНІ ПРОЙДЕНО',210,665,11,'#a7c4c1','center','system-ui',700);
+ c.restore();
+}
+function paintCaseTwoBriefing(){
+ c.save();c.fillStyle='#08121b';c.fillRect(0,0,W,H);
+ text('НАСТУПНА КРИМІНАЛЬНА СПРАВА',210,43,12,'#c2cfbf','center','system-ui',850);
+ paintCaseProgress(93);
+ text('СПРАВА №002',210,169,25,'#ffe2a6','center','Georgia',900);
+ text('СВІДОК, ЯКОГО НЕ БУЛО',210,207,17,'#efd4bf','center','Georgia',800);
+ rr(142,241,136,156,12,'#302a3e','#b89570');
+ drawFoxSprite(210,346);
+ text('НОВИЙ БОС: ПРОКУРОР ЛИС',210,417,13,'#f2c79b','center','system-ui',850);
+ text('НІЧ II · ПОЛІЦЕЙСЬКИЙ КОНВОЙ',210,452,12,'#cde3df','center','system-ui',750);
+ text('Розбий 3 замки й достав 3 папки',210,478,12,'#b8c9d2','center');
+ text('Рухомі вагони змінюють рикошети',210,505,12,'#b8c9d2','center');
+ rr(65,534,290,38,7,'#213c47','#5b797f');
+ text('З ПОПЕРЕДНЬОГО РІВНЯ: 3 СПІЛЬНИКИ',210,554,11,'#c5dbd6','center','system-ui',750);
+ rr(56,593,308,55,9,'#70533c','#efd198');
+ text('ПОЧАТИ НІЧ II · 03:00',210,620,15,'#fff1c7','center','system-ui',900);
+ text('ТРОФЕЙ СОВИ ВЖЕ У ТВОЇЙ КОЛЕКЦІЇ',210,670,10,'#a6cab6','center','system-ui',750);
+ c.restore();
+}
+function paintCampaignComplete(){
+ c.save();c.fillStyle='#08131b';c.fillRect(0,0,W,H);
+ text('УСПІШНИЙ ЗАБІГ',210,42,13,'#c3d3c5','center','system-ui',900);
+ paintCaseProgress(89);
+ text('ДВІ СПРАВИ ЗАКРИТО!',210,169,23,'#ffe1a6','center','Georgia',850);
+ text('2 РІВНІ · 2 БОСИ · 2 ТРОФЕЇ',210,202,12,'#c7dcce','center','system-ui',750);
+ const exhibits=[['№001','ВИРОК СОВИ','§'],['№002','СВІДОК №0','◎']];
+ for(let i=0;i<2;i++){
+  const x=43+i*174;
+  rr(x,245,162,187,12,'#233747','#a98d65');
+  text(exhibits[i][0],x+81,271,12,'#d9caa4','center','system-ui',800);
+  circle(x+81,341,44,i===0?'#776347':'#5a5673','#e2c18a');
+  text(exhibits[i][2],x+81,341,46,'#f5deb0','center','Georgia',850);
+  text(exhibits[i][1],x+81,397,i===0?12:14,'#e5e6da','center','system-ui',850);
+  text(G.trophies.includes(i===0?'owl_verdict':'invisible_witness')?'✓ У КОЛЕКЦІЇ':'—',x+81,418,10,'#a7e5bc','center','system-ui',800);
+ }
+ text(`ОЧКИ ЗАБІГУ: ${G.score}`,210,483,16,'#fff0bc','center','system-ui',850);
+ text(`ПЕРЕХОПЛЕНЬ: ${G.intercepts}  ·  БАНДА: ${G.actors.length}`,210,516,12,'#b4c7c4','center','system-ui',700);
+ rr(62,576,296,58,9,'#72563c','#e7c88f');
+ text('НОВИЙ ЗАБІГ — НІЧ I',210,605,14,'#fff3cf','center','system-ui',900);
+ text('ТРОФЕЇ ЗБЕРІГАЮТЬСЯ В БРАУЗЕРІ',210,665,11,'#a7c9bc','center','system-ui',750);
+ c.restore();
+}
+function proceedAfterTrophy(){
+ if(G.phase!=='trophy')return;
+ if(G.trophyCase===1){G.phase='case2_intro';G.t=0;}
+ else{G.phase='campaign_complete';G.t=0;}
+}
 function paintOverlay(){
  if(G.phase==='intro'){
-  overlay('Банда Жаби · Рейд',['ПРОЖЕКТОР: уникай світлового конуса.','КОНВОЇРИ: відбий клітку до виходу.','Знищуй установки й доставляй досьє.','4 НОВІ ЗБРОЇ: РАКЕТА · ВОГОНЬ · ЛІД · СТРУМ'],'ПОЧАТИ РЕЙД','Ніч змінить геометрію суду.');
+  overlay('Банда Жаби · Рейд',['ПРОЖЕКТОР: уникай світлового конуса.','КОНВОЇРИ: відбий клітку до виходу.','Знищуй установки й доставляй досьє.','4 НОВІ ЗБРОЇ: РАКЕТА · ВОГОНЬ · ЛІД · СТРУМ'],'ПОЧАТИ НІЧ I · 02:30','Два рівні → два суди → два колекційні трофеї.');
+  paintCaseProgress(144);
   rr(96,517,228,28,6,'#2d5560','#7ba6aa');text('ТЕСТ ФІЗИЧНОЇ ПІДКОВИ',210,531,11,'#d3f4ef','center','system-ui',800);
   rr(96,550,228,28,6,'#554367','#b797d7');text('ТЕСТ СУДУ — СОВА І КІТ',210,564,11,'#f4dcff','center','system-ui',800);
   rr(96,583,228,28,6,'#624b34','#dbb77e');text('ТЕСТ ПОРЯТУНКУ БАНДИ',210,597,11,'#fbe6b7','center','system-ui',800);
@@ -1886,20 +1994,9 @@ function paintOverlay(){
   rr(96,648,228,28,6,'#644663','#e7afe1');text('ТЕСТ РІВНЯ 2 — КОНВОЙ + ЛИС',210,662,11,'#ffe7f6','center','system-ui',800);
  }
  if(G.phase==='dossier')overlay(G.cycle===2?'КОНВОЙ ЗУПИНЕНО?':'ДОСЬЄ ДЕТЕКТИВА',[G.cycle===2?`Свідчення доставлено: ${G.alibiFragments}/3 · Утеч конвою: ${G.convoyEscapes}`:`Докази: ${G.evidence}/4 · Досьє ${G.lootDelivered}/3`,`Установки знищено: ${G.turretsDown}/3 · Втрачені спільники: ${G.lostPrisoners}`,G.cycle===2?'Кожна папка зменшує захист Лиса. Рухомі щити чекають!':`Прожектор: ${G.turretResults.spotlight?'СУД БЕЗ НАВЕДЕННЯ':'СВІДОК І ПРОМІНЬ'}`,G.cycle===2?`Зірвано замків: ${G.convoyReleases}/3 · Поліцейські втечі: ${G.convoyEscapes}`:`Гармата ${G.turretResults.cannon?'✓':'×'} · Сирена ${G.turretResults.siren?'✓':'×'} · Конвоїри ${G.escortsCaught}`],'НА СУД!','Твої рішення вночі перебудували арену.');
- if(G.phase==='alibi'){
-  c.fillStyle='rgba(5,11,18,.93)';c.fillRect(0,0,W,H);
-  rr(22,142,376,419,13,'#1c2837','#c19a6a');
-  text('СПРАВА №001 ЗАКРИТА!',210,179,18,'#ffdda0','center','Georgia',800);
-  text('СОВУ ПЕРЕМОЖЕНО',210,215,13,'#c5e7dd','center','system-ui',850);
-  circle(210,289,50,'#6e5748','#f0d394');text('§',210,288,54,'#ffe2ae','center','Georgia',900);
-  text('НОВИЙ КОЛЕКЦІЙНИЙ ТРОФЕЙ',210,367,12,'#f8d8aa','center','system-ui',850);
-  text('ПІДРОБЛЕНИЙ ВИРОК СОВИ',210,394,15,'#fff2c7','center','Georgia',800);
-  text('Збережено у Бюро бездоганних алібі',210,424,11,'#afccc7','center','system-ui',600);
-  rr(63,466,294,54,9,'#6b4e3e','#f4d09a');
-  text('РОЗПОЧАТИ СПРАВУ №002',210,485,13,'#fff0c8','center','system-ui',900);
-  text('КОНВОЙ + ПРОКУРОР ЛИС',210,507,10,'#e6d3b5','center','system-ui',700);
-  text(`У КОЛЕКЦІЇ: ${G.trophies.length}/2`,210,545,10,'#b6d7cc','center','system-ui',750);
- }
+ if(G.phase==='trophy')paintTrophyMilestone();
+ if(G.phase==='case2_intro')paintCaseTwoBriefing();
+ if(G.phase==='campaign_complete')paintCampaignComplete();
  if(G.phase==='verdict')overlay(G.won?'ВИПРАВДАНО!':'БАНДУ РОЗБИТО!',[G.won?'ЗАВЕРШЕНО ДВІ СПРАВИ! ПЕРЕМОЖЕНО ЛИСА ФОКСВОРТА.':(G.lossText||'Справу програно.'),`Очки: ${G.score} · Перехоплень: ${G.intercepts}`,`Хвостом: ${G.tailCatches} · Рикошетів Підкови: ${G.horseStats.bounces}`],'ЗІГРАТИ ЗНОВУ',G.won?'НОВИЙ ЕКСПОНАТ: СВІДОК №0 · I SAW NOTHING':'Рятуй клітки швидше й не залишай Жабу саму.');
 }
 function draw(){c.setTransform(DPR,0,0,DPR,0,0);c.imageSmoothingEnabled=false;c.save();c.clearRect(0,0,W,H);paintBackground();paintSpotlightCone();
@@ -1910,7 +2007,7 @@ function draw(){c.setTransform(DPR,0,0,DPR,0,0);c.imageSmoothingEnabled=false;c.
  paintOverlay();c.restore();
 }
 function tick(ts){if(!previous)previous=ts;let dt=clamp((ts-previous)/1000,0,.036);previous=ts;now=ts/1000;frame++;advanceVFX(dt);advanceNewWeaponEvents(dt);step(dt);draw();requestAnimationFrame(tick)}
-function practiceSecondNight(){prepareSecondNight();G.t=Math.min(110,G.t);alert('ТЕСТ РІВНЯ 2: ЗРУЙНУЙ ЗАМКИ КОНВОЮ, ЗБЕРИ 3 ПАПКИ!');}
+function practiceSecondNight(){prepareSecondNight();alert('ТЕСТ РІВНЯ 2: ЗРУЙНУЙ ЗАМКИ КОНВОЮ, ЗБЕРИ 3 ПАПКИ!');}
 function practiceHorseshoe(){
  setPhase('night');G.actors=[{x:3,y:8,kind:'frog'},{x:4,y:8,kind:'weasel'},{x:5,y:8,kind:'badger'},{x:6,y:8,kind:'crow'},{x:7,y:8,kind:'crow'},
  {x:7,y:9,kind:'opossum'},{x:7,y:10,kind:'weasel'},{x:6,y:10,kind:'badger'},{x:5,y:10,kind:'crow'},{x:4,y:10,kind:'opossum'},{x:3,y:10,kind:'weasel'}];
@@ -1958,7 +2055,9 @@ function practiceConvoy(){
  alert('ТЕСТ КОНВОЮ: ВРЯТУЙ КЛІТКУ, ПОКИ КОП ЇЇ НЕ ВИНІС!');
 }
 function handleClick(x,y){
- if(G.phase==='alibi'){prepareSecondNight();return;}
+ if(G.phase==='trophy'){proceedAfterTrophy();return;}
+ if(G.phase==='case2_intro'){prepareSecondNight();return;}
+ if(G.phase==='campaign_complete'){fresh();return;}
  if(G.phase==='intro'){if(y>=648&&y<=677){practiceSecondNight();return}if(y>=616&&y<=645){practiceWeapons()}else if(y>=583&&y<=612){practiceConvoy()}else if(y>=550&&y<=582){startCourtArtPreview()}else if(y>=509&&y<550){practiceHorseshoe()}else setPhase('night');return}
  if(G.phase==='dossier'){setPhase('court');return}
  if(G.phase==='verdict'){fresh();setPhase('night');return}
@@ -1970,8 +2069,8 @@ C.addEventListener('pointerdown',e=>{const r=C.getBoundingClientRect();pStart={x
 C.addEventListener('pointerup',e=>{if(!pStart)return;const r=C.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*W,y=(e.clientY-r.top)/r.height*H,dx=x-pStart.x,dy=y-pStart.y;if(Math.max(Math.abs(dx),Math.abs(dy))<19)handleClick(x,y);else if(Math.abs(dx)>Math.abs(dy))turnTo(dx>0?0:2);else turnTo(dy>0?1:3);pStart=null;},{passive:false});
 C.addEventListener('contextmenu',e=>e.preventDefault());
 window.addEventListener('keydown',e=>{let d={'ArrowRight':0,'KeyD':0,'ArrowDown':1,'KeyS':1,'ArrowLeft':2,'KeyA':2,'ArrowUp':3,'KeyW':3}[e.code];if(d!==undefined){e.preventDefault();turnTo(d)}
- if(G.phase==='alibi'&&['Digit1','Digit2','Digit3'].includes(e.code)){e.preventDefault();chooseAlibi(['passport','clock','prints'][Number(e.code.slice(-1))-1]);}
- if(e.code==='Space'||e.code==='Enter'){e.preventDefault();if(G.phase==='intro')setPhase('night');else if(G.phase==='dossier'){if(G.cycle===2)unlockAlibi();setPhase('court');}else if(G.phase==='verdict'){fresh();setPhase('night')}else {/* keyboard has no manual party-sort action */}}
+ /* Case trophy and briefing use the shared Enter/Space handler. */
+ if(e.code==='Space'||e.code==='Enter'){e.preventDefault();if(G.phase==='intro')setPhase('night');else if(G.phase==='dossier'){if(G.cycle===2)unlockAlibi();setPhase('court');}else if(G.phase==='trophy')proceedAfterTrophy();else if(G.phase==='case2_intro')prepareSecondNight();else if(G.phase==='campaign_complete')fresh();else if(G.phase==='verdict'){fresh();setPhase('night')}else {/* no manual party-sort */}}
  if(e.code==='KeyH'&&G.phase==='intro')practiceHorseshoe();
  if(e.code==='KeyL'&&G.phase==='intro')practiceSecondNight();
  if(e.code==='KeyJ'&&G.phase==='intro')startCourtArtPreview();
@@ -1983,20 +2082,23 @@ window.addEventListener('keydown',e=>{let d={'ArrowRight':0,'KeyD':0,'ArrowDown'
 window.__NEW_WEAPON_VFX_TEST__={meta:NEW_WEAPON_META,images:NEW_WEAPON_IMAGES,events:NEW_WEAPON_EVENTS,draw:drawNewWeaponSprite,fire:addNewWeaponEvent};
 window.__CASE2_TEST__={
  state:()=>({phase:G.phase,cycle:G.cycle,alibi:G.selectedAlibi,fragments:G.alibiFragments,cargo:G.fakeCargo!==null,folders:G.fakeFragments.length,judge:G.judge,shots:G.appealShots,archive:G.archive.slice()}),
- firstWin:()=>{G.cycle=1;setPhase('alibi');return G.phase;},
+ firstWin:()=>{G.cycle=1;unlockCaseTrophy('owl_verdict');setPhase('trophy');G.trophyCase=1;return G.phase;},
  select:chooseAlibi,
  folder:(i=0)=>{const f=G.fakeFragments[i];if(f){G.actors[0].x=f.x;G.actors[0].y=f.y;collectFakeFolder(G.actors[0]);resetSpriteAnimation();}return G.fakeCargo!==null;},
  deliver:()=>{G.actors[0].x=7;G.actors[0].y=17;collectFakeFolder(G.actors[0]);resetSpriteAnimation();return G.alibiFragments;},
  toCourt:()=>{unlockAlibi();setPhase('court');},
  triggerProof:()=>{G.judgeStage=2;G.t=95;triggerSecondCourtAlibi();},
  appeal:()=>{G.judgeStage=2;courtShot();return G.appealShots;},
- complete:()=>{if(G.cycle===1){setPhase('alibi');}else{unlockAlibi();G.won=true;setPhase('verdict');}return G.phase;}
+ complete:()=>{if(G.cycle===1){unlockCaseTrophy('owl_verdict');setPhase('trophy');G.trophyCase=1;}else{unlockCaseTrophy('invisible_witness');G.won=true;setPhase('trophy');G.trophyCase=2;}return G.phase;},
+ next:()=>{if(G.phase==='trophy')proceedAfterTrophy();else if(G.phase==='case2_intro')prepareSecondNight();else if(G.phase==='campaign_complete')fresh();return G.phase;},
+ progression:()=>({phase:G.phase,cycle:G.cycle,trophyCase:G.trophyCase,seconds:Math.ceil(G.t),stageTime:G.stageTime,step:caseStepIndex(),trophies:G.trophies.slice(),score:G.score})
 };
 window.__FROG_TEST__={
  chaos:()=>({mixer:G.mixer,mixerDelay:G.mixerDelay,mixes:G.mixerCount,forecast:forecastWeapons(),order:G.actors.map(a=>a.kind)}),
  spawnMixer:()=>{G.mixer=null;G.mixerDelay=0;spawnMixer();return G.mixer;},
  pickMixer:()=>{if(!G.mixer)spawnMixer();if(G.mixer){const m=G.mixer;collectMixer(m)}return G.actors.map(a=>a.kind);},
- addRandomRecruit:(kind='crow')=>{const tail=G.actors[G.actors.length-1];return addRandomRecruit(kind,tail)}, practiceWeapons,fireTrainingWeapon,advancedWeapons:()=>({stats:G.weaponStats,hazards:G.hazards,arcs:G.weaponArcs,owlFrozen:G.owlFrozen,enemyFrozen:G.enemies.map(e=>e.frozen||0)}),
+ addRandomRecruit:(kind='crow')=>{const tail=G.actors[G.actors.length-1];return addRandomRecruit(kind,tail)},
+ practiceWeapons,fireTrainingWeapon,advancedWeapons:()=>({stats:G.weaponStats,hazards:G.hazards,arcs:G.weaponArcs,owlFrozen:G.owlFrozen,enemyFrozen:G.enemies.map(e=>e.frozen||0)}),
  practiceConvoy,practiceSecondNight,foxInfo:()=>({cycle:G.cycle,boss:G.cycle===2?'fox':'owl',phase:G.phase,courtMovers:G.courtMovers,convoy:G.convoyVehicles,trophies:G.trophies,folders:G.fakeFragments,delivered:G.alibiFragments}),hitConvoy:(d=20)=>{const v=G.convoyVehicles?.[0];if(!v)return null;v.cool=0;const b={kind:'friendly',weapon:'rocket',x:v.x+v.w/2,y:v.y+v.h/2,damage:d,rad:7,blockCD:0,super:true};hitConvoyVehicle(v,b,b.x,b.y);return {hp:v.hp,locks:v.locks,released:G.convoyReleases,folders:G.fakeFragments.length};},
  spotlightInfo:()=>({turret:G.turrets.find(t=>t.kind==='spotlight'),lock:G.spotlightLock,marked:G.spotlightMarked}),
  forcePrisoner:(kind='crow')=>{if(G.phase!=='night')setPhase('night');spawnPrisoner(kind,G.actors[0].x+2,G.actors[0].y+1);return G.prisoners.length;},
